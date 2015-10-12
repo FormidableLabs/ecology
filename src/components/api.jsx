@@ -29,7 +29,6 @@ const renderType = ({name, value}) => {
 
 export default class API extends React.Component {
   render() {
-    console.log(this.props.source)
     const docObj = this.props.source;
     const propMap = makeArray(docObj.props);
     return (

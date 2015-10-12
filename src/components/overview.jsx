@@ -12,7 +12,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         let source = playgrounds[p].innerText;
         React.render(
-          <Playground codeText={source} scope={this.props.scope} noRender={noRender}/>,
+          <Playground codeText={source} scope={this.props.scope} noRender={true}/>,
           playgrounds[p].parentNode
         );
       }

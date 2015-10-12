@@ -215,7 +215,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(API, [{
 	    key: "render",
 	    value: function render() {
-	      console.log(this.props.source);
 	      var docObj = this.props.source;
 	      var propMap = makeArray(docObj.props);
 	      return _react2["default"].createElement(
@@ -77935,7 +77934,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      for (var p in playgrounds) {
 	        if (playgrounds.hasOwnProperty(p)) {
 	          var source = playgrounds[p].innerText;
-	          _react2["default"].render(_react2["default"].createElement(_componentPlayground2["default"], { codeText: source, scope: this.props.scope, noRender: noRender }), playgrounds[p].parentNode);
+	          _react2["default"].render(_react2["default"].createElement(_componentPlayground2["default"], { codeText: source, scope: this.props.scope, noRender: true }), playgrounds[p].parentNode);
 	        }
 	      }
 	      var playgroundsNoRender = _react2["default"].findDOMNode(this.refs.overview).getElementsByClassName('lang-playground_norender');
