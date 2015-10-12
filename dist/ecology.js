@@ -77930,14 +77930,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: "renderPlaygrounds",
 	    value: function renderPlaygrounds() {
-	      var playgrounds = _react2["default"].findDOMNode(this.refs.overview).getElementsByClassName('lang-playground');
+	      var playgrounds = Array.prototype.slice.call(_react2["default"].findDOMNode(this.refs.overview).getElementsByClassName('lang-playground'), 0);
 	      for (var p in playgrounds) {
 	        if (playgrounds.hasOwnProperty(p)) {
 	          var source = playgrounds[p].innerText;
 	          _react2["default"].render(_react2["default"].createElement(_componentPlayground2["default"], { codeText: source, scope: this.props.scope, noRender: true }), playgrounds[p].parentNode);
 	        }
 	      }
-	      var playgroundsNoRender = _react2["default"].findDOMNode(this.refs.overview).getElementsByClassName('lang-playground_norender');
+	      var playgroundsNoRender = Array.prototype.slice.call(_react2["default"].findDOMNode(this.refs.overview).getElementsByClassName('lang-playground_norender'), 0);
 	      for (var p in playgroundsNoRender) {
 	        if (playgroundsNoRender.hasOwnProperty(p)) {
 	          var source = playgroundsNoRender[p].innerText;

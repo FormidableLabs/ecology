@@ -7,7 +7,7 @@ class Overview extends React.Component {
     this.renderPlaygrounds();
   }
   renderPlaygrounds() {
-    let playgrounds = React.findDOMNode(this.refs.overview).getElementsByClassName('lang-playground');
+    let playgrounds = Array.prototype.slice.call(React.findDOMNode(this.refs.overview).getElementsByClassName('lang-playground'), 0);
     for (let p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         let source = playgrounds[p].innerText;
@@ -17,7 +17,7 @@ class Overview extends React.Component {
         );
       }
     }
-    let playgroundsNoRender = React.findDOMNode(this.refs.overview).getElementsByClassName('lang-playground_norender');
+    let playgroundsNoRender = Array.prototype.slice.call(React.findDOMNode(this.refs.overview).getElementsByClassName('lang-playground_norender'), 0);
     for (let p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         let source = playgroundsNoRender[p].innerText;
