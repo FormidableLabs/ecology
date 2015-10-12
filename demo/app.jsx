@@ -1,15 +1,15 @@
 /*global document:false*/
 import React from "react";
-import {Ecology, Overview} from "../src/index";
-import SampleComponent from "!!raw!../src/sample";
+import Ecology from "../src/index";
 
 class App extends React.Component {
   render() {
     return (
       <div className="demo">
-        <Overview markdown={"### Hello world I'm a heading"}/>
-        <Ecology target={SampleComponent} />
-        <Playground/>
+        <Ecology
+          overview={require('!!raw!./ecology.md')}
+          source={require('!!raw!./sample')}
+          scope={{React, SampleClass: require('./sample')}}/>
       </div>
     );
   }

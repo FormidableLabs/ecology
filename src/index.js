@@ -1,4 +1,1 @@
-module.exports = {
-  Ecology: require("./components/ecology"),
-  Overview: require("./components/overview")
-};
+module.exports = require("./components/ecology");
