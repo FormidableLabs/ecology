@@ -1,5 +1,4 @@
 import React from "react";
-import * as reactDocs from "react-docgen";
 
 const makeArray = (obj) =>
   Object.keys(obj).map((key) =>
@@ -30,7 +29,8 @@ const renderType = ({name, value}) => {
 
 export default class API extends React.Component {
   render() {
-    const docObj = reactDocs.parse(this.props.target);
+    console.log(this.props.source)
+    const docObj = this.props.source;
     const propMap = makeArray(docObj.props);
     return (
       <table>

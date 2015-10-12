@@ -8,7 +8,7 @@ export default class Ecology extends React.Component {
     return (
       <div className="ecology-wrapper">
         <Overview markdown={this.props.overview} scope={this.props.scope}/>
-        <API target={this.props.source}/>
+        <API source={this.props.source}/>
       </div>
     );
   }
@@ -16,6 +16,6 @@ export default class Ecology extends React.Component {
 
 Ecology.propTypes = {
   overview: React.PropTypes.string,
-  source: React.PropTypes.string,
+  source: React.PropTypes.object,
   scope: React.PropTypes.object
 }
