@@ -267,12 +267,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	              _react2["default"].createElement(
 	                "td",
 	                null,
-	                _react2["default"].createElement(
+	                'description' in prop ? _react2["default"].createElement(
 	                  "span",
 	                  { className: "prop__description" },
 	                  prop.description.split("@examples")[0]
-	                ),
-	                prop.description.indexOf("@examples") !== -1 ? _react2["default"].createElement(
+	                ) : null,
+	                'description' in prop && prop.description.indexOf("@examples") !== -1 ? _react2["default"].createElement(
 	                  "span",
 	                  { className: "prop__examples" },
 	                  _react2["default"].createElement(

@@ -53,10 +53,11 @@ export default class API extends React.Component {
                   {prop.required && <span className="prop__required">required</span>}
                 </td>
                 <td>
+                  {'description' in prop ?
                   <span className="prop__description">
                     {prop.description.split("@examples")[0]}
-                  </span>
-                  { prop.description.indexOf("@examples") !== -1 ?
+                  </span> : null}
+                  {'description' in prop && prop.description.indexOf("@examples") !== -1 ?
                     <span className="prop__examples">
                       <span className="prop__examples-title">Examples: </span>
                       <span className="prop__examples-value">{prop.description.split("@examples")[1]}</span>

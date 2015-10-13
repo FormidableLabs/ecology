@@ -11,10 +11,6 @@ class SampleClass extends React.Component {
 
 SampleClass.propTypes = {
   /**
-   * Count description
-   */
-  count: React.PropTypes.number.isRequired,
-  /**
    * Name description
    * @examples "#ff0000", "rgba(255, 0, 0, 1", "red"
    */
