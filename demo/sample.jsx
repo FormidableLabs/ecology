@@ -9,6 +9,12 @@ class SampleClass extends React.Component {
   }
 }
 
+class Test extends React.Component {
+  render() {
+    return null;
+  }
+}
+
 SampleClass.propTypes = {
   /**
    * Name description
@@ -18,10 +24,11 @@ SampleClass.propTypes = {
   /**
    * Indexes test
    */
-  indexes: React.PropTypes.array,
+  indexes: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Test)),
   /**
    * Union test
    */
+  test: React.PropTypes.instanceOf(Test),
   optionalUnion: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.number

@@ -16,7 +16,7 @@ const renderType = ({name, value}) => {
       return value
     }
     case "arrayOf": {
-      return `Array<${value.name}>`;
+      return `Array<${renderType(value)}>`;
     }
     case "shape": {
       return `{${Object.keys(value).map((val) => val + ': ' + renderType(value[val])).join(', ')}}`;
