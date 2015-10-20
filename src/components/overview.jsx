@@ -12,7 +12,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         let source = playgrounds[p].innerText;
         React.render(
-          <Playground codeText={source} scope={this.props.scope} noRender={true}/>,
+          <div className="Interactive"><Playground codeText={source} scope={this.props.scope} noRender={true}/></div>,
           playgrounds[p].parentNode
         );
       }
@@ -22,7 +22,7 @@ class Overview extends React.Component {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         let source = playgroundsNoRender[p].innerText;
         React.render(
-          <Playground codeText={source} scope={this.props.scope} noRender={false}/>,
+          <div className="Interactive"><Playground codeText={source} scope={this.props.scope} noRender={false}/></div>,
           playgroundsNoRender[p].parentNode
         );
       }

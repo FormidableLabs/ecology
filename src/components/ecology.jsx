@@ -6,9 +6,9 @@ import Overview from "./overview";
 export default class Ecology extends React.Component {
   render() {
     return (
-      <div className="ecology-wrapper">
-        <Overview markdown={this.props.overview} scope={this.props.scope}/>
-        <API source={this.props.source}/>
+      <div className="Ecology">
+        <div className="Overview"><Overview markdown={this.props.overview} scope={this.props.scope}/></div>
+        <div className="Documentation"><API source={this.props.source}/></div>
       </div>
     );
   }
