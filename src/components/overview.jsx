@@ -13,7 +13,11 @@ class Overview extends React.Component {
         const source = playgrounds[p].innerText;
         React.render(
           <div className="Interactive">
-            <Playground codeText={source} scope={this.props.scope} noRender={true}/>
+            <Playground
+              codeText={source}
+              scope={this.props.scope}
+              noRender={true}
+              theme={this.props.playgroundtheme ? this.props.playgroundtheme : "monokai"}/>
           </div>,
           playgrounds[p].parentNode
         );
@@ -25,7 +29,11 @@ class Overview extends React.Component {
         const source = playgroundsNoRender[p].innerText;
         React.render(
           <div className="Interactive">
-            <Playground codeText={source} scope={this.props.scope} noRender={false}/>
+            <Playground
+              codeText={source}
+              scope={this.props.scope}
+              noRender={false}
+              theme={this.props.playgroundtheme ? this.props.playgroundtheme : "monokai"}/>
           </div>,
           playgroundsNoRender[p].parentNode
         );
@@ -45,5 +53,6 @@ export default Overview;
 
 Overview.propTypes = {
   markdown: React.PropTypes.string,
+  playgroundtheme: React.PropTypes.string,
   scope: React.PropTypes.object
 };
