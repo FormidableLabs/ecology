@@ -8,9 +8,9 @@ class App extends React.Component {
     return (
       <div className="demo">
         <Ecology
-          overview={require('!!raw!./ecology.md')}
-          source={require('json!./sample.json')}
-          scope={{React, SampleClass: require('./sample')}}/>
+          overview={require("!!raw!./ecology.md")}
+          source={require("json!./sample.json")}
+          scope={{React, SampleClass: require("./sample")}}/>
       </div>
     );
   }
