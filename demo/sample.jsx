@@ -24,7 +24,7 @@ SampleClass.propTypes = {
   /**
    * Indexes test
    */
-  indexes: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Test)),
+  indexes: React.PropTypes.arrayOf(React.PropTypes.number),
   /**
    * Union test
    */
