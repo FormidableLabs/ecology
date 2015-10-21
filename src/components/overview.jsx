@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM , { findDOMNode } from 'react-dom';
 import marked from "marked";
 import Playground from "component-playground";
 
@@ -7,11 +8,11 @@ class Overview extends React.Component {
     this.renderPlaygrounds();
   }
   renderPlaygrounds() {
-    const playgrounds = Array.prototype.slice.call(React.findDOMNode(this.refs.overview).getElementsByClassName("lang-playground"), 0);
+    const playgrounds = Array.prototype.slice.call(ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].innerText;
-        React.render(
+        ReactDOM.render(
           <div className="Interactive">
             <Playground
               codeText={source}
@@ -23,11 +24,11 @@ class Overview extends React.Component {
         );
       }
     }
-    const playgroundsNoRender = Array.prototype.slice.call(React.findDOMNode(this.refs.overview).getElementsByClassName("lang-playground_norender"), 0);
+    const playgroundsNoRender = Array.prototype.slice.call(ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName("lang-playground_norender"), 0);
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].innerText;
-        React.render(
+        ReactDOM.render(
           <div className="Interactive">
             <Playground
               codeText={source}
