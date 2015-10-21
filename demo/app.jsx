@@ -10,7 +10,7 @@ class App extends React.Component {
         <Ecology
           overview={require("!!raw!./ecology.md")}
           source={require("json!./sample.json")}
-          scope={{React, SampleClass: require("./sample")}}/>
+          scope={{React, ReactDOM, SampleClass: require("./sample")}}/>
       </div>
     );
   }
