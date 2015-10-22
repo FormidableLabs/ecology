@@ -6,11 +6,11 @@ var App = React.createClass({
   render() {
       return (
       <SampleClass/>
-      )
+      );
     }
 })
 
-React.render(<App/>, mountNode);
+ReactDOM.render(<App/>, mountNode);
 ```
 
 ## Look At Me

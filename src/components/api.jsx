@@ -6,24 +6,24 @@ const makeArray = (obj) =>
 
 const renderType = ({name, value}) => {
   switch (name) {
-    case "union": {
-      return value.map((val) => val.name).join(', ');
-    }
-    case "enum": {
-      return value.map((val) => val.value).join(', ');
-    }
-    case "instanceOf": {
-      return value
-    }
-    case "arrayOf": {
-      return `Array<${renderType(value)}>`;
-    }
-    case "shape": {
-      return `{${Object.keys(value).map((val) => val + ': ' + renderType(value[val])).join(', ')}}`;
-    }
-    default: {
-      return name;
-    }
+  case "union": {
+    return value.map((val) => val.name).join(', ');
+  }
+  case "enum": {
+    return value.map((val) => val.value).join(', ');
+  }
+  case "instanceOf": {
+    return value;
+  }
+  case "arrayOf": {
+    return `Array<${renderType(value)}>`;
+  }
+  case "shape": {
+    return `{${Object.keys(value).map((val) => val + ': ' + renderType(value[val])).join(', ')}}`;
+  }
+  default: {
+    return name;
+  }
   }
 };
 
@@ -32,7 +32,7 @@ export default class API extends React.Component {
     const docObj = this.props.source;
     const propMap = makeArray(docObj.props);
     return (
-      <table>
+      <table className="Props">
         <thead>
           <tr>
             <th>Props</th>
@@ -42,39 +42,45 @@ export default class API extends React.Component {
         <tbody>
           {propMap.map((prop, index) => {
             return (
-              <tr key={index}>
+              <tr key={index} className="Prop">
                 <td>
-                  <span className="prop__name">
+                  <span className="Prop-name">
                     {prop.name}
                   </span>
-                  <span className="prop__type">
+                  <span className="Prop-type">
                     {renderType({...prop.type})}
                   </span>
-                  {prop.required && <span className="prop__required">required</span>}
+                  {prop.required && <span className="Prop-required">required</span>}
                 </td>
                 <td>
-                  {'description' in prop ?
-                  <span className="prop__description">
+                  {"description" in prop ?
+                  <span className="Prop-description">
                     {prop.description.split("@examples")[0]}
                   </span> : null}
-                  {'description' in prop && prop.description.indexOf("@examples") !== -1 ?
-                    <span className="prop__examples">
-                      <span className="prop__examples-title">Examples: </span>
-                      <span className="prop__examples-value">{prop.description.split("@examples")[1]}</span>
-                    </span>  :
+                  {"description" in prop && prop.description.indexOf("@examples") !== -1 ?
+                    <span className="Prop-examples">
+                      <span className="Prop-examples-title">Examples: </span>
+                      <span className="Prop-examples-value">
+                        {prop.description.split("@examples")[1]}
+                      </span>
+                    </span> :
                     null}
-                  {'defaultValue' in prop ?
-                    <span className="prop__default">
-                      <span className="prop__default-title">Default Value: </span>
-                      <span className="prop__default-value">{prop.defaultValue.value}</span>
+                  {"defaultValue" in prop ?
+                    <span className="Prop-default">
+                      <span className="Prop-default-title">Default Value: </span>
+                      <span className="Prop-default-value">{prop.defaultValue.value}</span>
                     </span> :
                     null}
                 </td>
               </tr>
-            )
+            );
           })}
         </tbody>
       </table>
     );
   }
 }
+
+API.propTypes = {
+  source: React.PropTypes.object
+};

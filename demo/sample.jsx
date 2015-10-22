@@ -24,7 +24,7 @@ SampleClass.propTypes = {
   /**
    * Indexes test
    */
-  indexes: React.PropTypes.arrayOf(React.PropTypes.instanceOf(Test)),
+  indexes: React.PropTypes.arrayOf(React.PropTypes.number),
   /**
    * Union test
    */
@@ -38,7 +38,7 @@ SampleClass.propTypes = {
 SampleClass.defaultProps = {
   count: 1,
   name: "test",
-  indexes: [1,2,3],
+  indexes: [1, 2, 3],
   optionalUnion: 5
 };
 
