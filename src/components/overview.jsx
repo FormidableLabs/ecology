@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM , { findDOMNode } from 'react-dom';
+import ReactDOM, { findDOMNode } from "react-dom";
 import marked from "marked";
 import Playground from "component-playground";
 
