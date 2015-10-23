@@ -7,10 +7,14 @@ export default class Ecology extends React.Component {
     return (
       <div className="Ecology">
         <div className="Overview">
-          <Overview markdown={this.props.overview} scope={this.props.scope}/>
+          <Overview
+            markdown={this.props.overview}
+            scope={this.props.scope}
+            playgroundtheme={this.props.playgroundtheme}/>
         </div>
         <div className="Documentation">
-          <API source={this.props.source} playgroundtheme={this.props.playgroundtheme}/>
+          <API
+            source={this.props.source}/>
         </div>
       </div>
     );
