@@ -391,7 +391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: "renderPlaygrounds",
 	    value: function renderPlaygrounds() {
-	      var playgrounds = Array.prototype.slice.call(this.findPlayground("land-playground"), 0);
+	      var playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
 	      for (var p in playgrounds) {
 	        if (playgrounds.hasOwnProperty(p)) {
 	          var source = playgrounds[p].innerText;
