@@ -11,7 +11,7 @@ class Overview extends React.Component {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
   renderPlaygrounds() {
-    const playgrounds = Array.prototype.slice.call(this.findPlayground("land-playground"), 0);
+    const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].innerText;
