@@ -7,10 +7,10 @@ const makeArray = (obj) =>
 const renderType = ({name, value}) => {
   switch (name) {
   case "union": {
-    return value.map((val) => val.name).join(', ');
+    return value.map((val) => val.name).join(", ");
   }
   case "enum": {
-    return value.map((val) => val.value).join(', ');
+    return value.map((val) => val.value).join(", ");
   }
   case "instanceOf": {
     return value;
@@ -19,7 +19,7 @@ const renderType = ({name, value}) => {
     return `Array<${renderType(value)}>`;
   }
   case "shape": {
-    return `{${Object.keys(value).map((val) => val + ': ' + renderType(value[val])).join(', ')}}`;
+    return `{${Object.keys(value).map((val) => val + ": " + renderType(value[val])).join(", ")}}`;
   }
   default: {
     return name;
