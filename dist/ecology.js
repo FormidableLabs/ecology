@@ -394,7 +394,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
 	      for (var p in playgrounds) {
 	        if (playgrounds.hasOwnProperty(p)) {
-	          var source = playgrounds[p].innerText;
+	          var source = playgrounds[p].textContent;
 	          _reactDom2["default"].render(_react2["default"].createElement(
 	            "div",
 	            { className: "Interactive" },
@@ -409,7 +409,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var playgroundsNoRender = Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
 	      for (var p in playgroundsNoRender) {
 	        if (playgroundsNoRender.hasOwnProperty(p)) {
-	          var source = playgroundsNoRender[p].innerText;
+	          var source = playgroundsNoRender[p].textContent;
 	          _reactDom2["default"].render(_react2["default"].createElement(
 	            "div",
 	            { className: "Interactive" },
