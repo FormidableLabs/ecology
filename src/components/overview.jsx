@@ -14,7 +14,7 @@ class Overview extends React.Component {
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
-        const source = playgrounds[p].innerText;
+        const source = playgrounds[p].textContent;
         ReactDOM.render(
           <div className="Interactive">
             <Playground
@@ -31,7 +31,7 @@ class Overview extends React.Component {
       Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
-        const source = playgroundsNoRender[p].innerText;
+        const source = playgroundsNoRender[p].textContent;
         ReactDOM.render(
           <div className="Interactive">
             <Playground
