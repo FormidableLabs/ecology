@@ -30,6 +30,9 @@ const renderType = ({name, value}) => {
 export default class API extends React.Component {
   render() {
     const docObj = this.props.source;
+    if (!docObj.props) {
+      return null;
+    }
     const propMap = makeArray(docObj.props);
     return (
       <table className="Props">
