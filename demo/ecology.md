@@ -13,5 +13,6 @@ var App = React.createClass({
 ReactDOM.render(<App/>, mountNode);
 ```
 
-## Look At Me
-I'm docs! Inline.
+## SampleClass PropTypes
+
+The below table shows the propTypes this component accepts, plus the configured default values.
