@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Ecology from "../src/index";
+import * as docgen from "react-docgen";
 
 class App extends React.Component {
   render() {
@@ -9,7 +10,7 @@ class App extends React.Component {
       <div className="demo">
         <Ecology
           overview={require("!!raw!./ecology.md")}
-          source={require("json!./sample.json")}
+          source={docgen.parse(require("!!raw!./sample"))}
           scope={{React, ReactDOM, SampleClass: require("./sample")}}/>
       </div>
     );
