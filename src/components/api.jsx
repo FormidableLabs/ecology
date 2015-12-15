@@ -31,7 +31,7 @@ export default class API extends React.Component {
   render() {
     const docObj = this.props.source;
     if (!docObj.props) {
-      return null;
+      return <em>This component has no PropTypes defined.</em>;
     }
     const propMap = makeArray(docObj.props);
     return (
