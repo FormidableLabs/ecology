@@ -2,7 +2,7 @@
  * Client tests
  */
 import React from "react/addons";
-import Component from "src/components/ecology";
+import Ecology from "src/components/ecology";
 
 // Use `TestUtils` to inject into DOM, simulate events, etc.
 // See: https://facebook.github.io/react/docs/test-utils.html
@@ -16,7 +16,7 @@ describe("components/ecology", function () {
     //
     // https://facebook.github.io/react/docs/test-utils.html#shallow-rendering
     const renderer = TestUtils.createRenderer();
-    renderer.render(<Component />);
+    renderer.render(<Ecology />);
     const output = renderer.getRenderOutput();
     expect(output.type).to.equal("div");
   });
