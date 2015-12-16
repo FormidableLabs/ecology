@@ -13,5 +13,5 @@ var App = React.createClass({
 ReactDOM.render(<App/>, mountNode);
 ```
 
-## Look At Me
-I'm docs! Inline.
+## Automatic Prop Table
+The Prop Table below is automatically generated from comments in the component, see `sample.jsx`.
