@@ -1,0 +1,162 @@
+// Variables
+// Colors
+$navy = #132e3f;
+$forest = #224549;
+$green = #305e42;
+$lightGreen = #578934;
+$pea = #9eb15f;
+
+$lime = #efecca;
+$pistachio = #b0cc99;
+$darkPistachio = #83b05f;
+// Fonts
+$headlineSans = 'Work Sans', 'Century Gothic', 'Avenir', 'Avenir Next', Geneva, Verdana, sans-serif;
+$sansSerif = 'Source Sans Pro', 'Roboto', 'Segoe UI', Geneva, Verdana, sans-serif;
+$serif = Cambria, Georgia, 'Times New Roman', Times, serif;
+$monospace = 'Inconsolata', 'Anonymous Pro', 'Andale Mono', 'Courier New', Courier, monospace;
+
+
+* {
+  box-sizing: inherit;
+}
+
+html {
+  position: relative;
+  border-top: 1rem solid $pea;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background-color: $lightGreen;
+  }
+}
+
+body {
+  position: relative;
+  margin: 1rem 0 0 0;
+  padding: 1rem;
+  border-top: 1rem solid $green;
+
+  background-color: $navy;
+  color: $lime;
+  font-family: $sansSerif;
+  font-size: 18px;
+  line-height: 24px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background-color: $forest;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.75rem;
+}
+
+h1, h2, h3 {
+  margin-top: 1.5em;
+
+  color: $pea;
+  font-family: $headlineSans;
+  font-weight: normal;
+  font-weight: 200;
+  letter-spacing: none;
+}
+
+.Edit {
+  background-color: $forest;
+  font-family: $sansSerif;
+  line-height: 2;
+  text-align: center;
+}
+
+.Interactive {
+  border: 0.25rem solid $forest;
+  line-height: 20px;
+}
+
+.tile {
+  display: block;
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+}
+
+.tile img {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
+
+.demo {
+  width: 80%;
+  margin: auto;
+  position: relative;
+}
+
+table {
+  background-color: $lime;
+  border-collapse: collapse;
+  border: 0.25rem solid $green;
+  width: 100%;
+
+  color: $navy;
+  text-align: left;
+  font-size: 18px;
+}
+
+th {
+  padding: 0.5rem 1rem;
+
+  background-color: $darkPistachio;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+td {
+  padding: 0.35rem 1rem;
+  vertical-align: top;
+}
+
+th, td {
+  border-bottom: 1px solid $pistachio;
+}
+
+.Prop-type, .Prop-required, .Prop-examples, .Prop-default {
+  display: block;
+}
+
+.Prop-name, .Prop-default-value, .Prop-examples-value, code {
+  padding: 0.15rem 0.3rem;
+
+  border-radius: 0.2em;
+  font-family: $monospace;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.Prop-type{
+  font-style: italic;
+}
+
+.Prop-required {
+  color: red;
+}
+
+.Prop-default-title, .Prop-examples-title {
+  color: $forest;
+  font-weight: bold;
+}
