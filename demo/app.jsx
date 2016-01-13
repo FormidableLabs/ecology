@@ -4,6 +4,8 @@ import ReactDOM from "react-dom";
 import Ecology from "../src/index";
 import * as docgen from "react-docgen";
 
+import "./styles.styl";
+
 class App extends React.Component {
   render() {
     return (
@@ -12,6 +14,7 @@ class App extends React.Component {
           overview={require("!!raw!./ecology.md")}
           source={docgen.parse(require("!!raw!./sample"))}
           scope={{React, ReactDOM, SampleClass: require("./sample")}}/>
+          playgroundtheme="blackboard"/>
       </div>
     );
   }

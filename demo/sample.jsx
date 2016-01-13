@@ -5,7 +5,7 @@ import React from "react";
  */
 class SampleClass extends React.Component {
   render() {
-    return <div>Edit me!</div>;
+    return (<div className="Edit">Edit me!</div>);
   }
 }
 

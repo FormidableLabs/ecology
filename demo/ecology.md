@@ -13,6 +13,5 @@ var App = React.createClass({
 ReactDOM.render(<App/>, mountNode);
 ```
 
-## SampleClass PropTypes
-
-The below table shows the propTypes this component accepts, plus the configured default values.
+## Automatic Prop Table
+The Prop Table below is automatically generated from comments in the component, see `sample.jsx`.
