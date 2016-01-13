@@ -1,8 +1,6 @@
 /*globals __dirname:false */
 "use strict";
 
-var webpack = require("webpack");
-
 module.exports = {
 
   devServer: {
@@ -13,13 +11,13 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "main.js",
-    publicPath: "/assets/"
+    publicPath: "/"
   },
 
   cache: true,
   devtool: "source-map",
   entry: {
-    app: ["./demo/app.jsx"]
+    app: ["./demo/docs.jsx"]
   },
   stats: {
     colors: true,
@@ -42,8 +40,5 @@ module.exports = {
         loader: "url-loader?limit=8192"
       }
     ]
-  },
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ]
+  }
 };

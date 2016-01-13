@@ -5,7 +5,15 @@ import React from "react";
  */
 class SampleClass extends React.Component {
   render() {
-    return (<div className="Edit">Edit me!</div>);
+    return (
+      <div className="Edit">
+        <h2>SampleClass Component</h2>
+        <p>Name: {this.props.name}</p>
+        <p>Count: {this.props.count}</p>
+        <p>Indexes: {this.props.indexes}</p>
+        <p>Type: {this.props.multiTypeValue}</p>
+      </div>
+    );
   }
 }
 
@@ -17,32 +25,39 @@ class Test extends React.Component {
 
 SampleClass.propTypes = {
   /**
-   * Name description
-   * @examples "#ff0000", "rgba(255, 0, 0, 1", "red"
+   * A name for this component
+   * @examples "Glorious name", "Dull name"
    */
   name: React.PropTypes.string,
   /**
-   * Indexes test
+   * Count
+   * @examples 1, 99, 10011
+   */
+  count: React.PropTypes.number,
+  /**
+   * Indexes
+   * @examples [0], [2, 5]
    */
   indexes: React.PropTypes.arrayOf(React.PropTypes.number),
   /**
-   * Component test
+   * Injected component
+   * @examples <Test/>
    */
-  test: React.PropTypes.instanceOf(Test),
+  injectedComponent: React.PropTypes.instanceOf(Test),
   /**
-   * Union test
+   * Multi-type value
    */
-  optionalUnion: React.PropTypes.oneOfType([
+  multiTypeValue: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.number
   ])
 };
 
 SampleClass.defaultProps = {
-  count: 1,
-  name: "test",
+  name: "Test Name",
+  count: 99,
   indexes: [1, 2, 3],
-  optionalUnion: 5
+  multiTypeValue: "I can be a string"
 };
 
 export default SampleClass;

@@ -124,7 +124,7 @@ test code may be harder to debug because it is instrumented.
 ### Client Tests
 
 The client tests rely on webpack dev server to create and serve the bundle
-of the app/test code at: http://127.0.0.1:3001/assets/main.js which is done
+of the app/test code at: http://127.0.0.1:3001/main.js which is done
 with the task `npm run server-test` (part of `npm dev`).
 
 #### Code Coverage
