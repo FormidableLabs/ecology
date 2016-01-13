@@ -8,10 +8,6 @@ node_js:
 # Use container-based Travis infrastructure.
 sudo: false
 
-branches:
-  only:
-    - master
-
 before_install:
   # GUI for real browsers.
   - export DISPLAY=:99.0
