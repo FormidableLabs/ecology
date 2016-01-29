@@ -21,7 +21,7 @@ $ npm run dev && npm run open-demo
 1. Your component should be created using `React.createClass()` or `class Foo extends React.Component`.
 2. Your component should define `propTypes` [in the `createClass` object literal](https://github.com/reactjs/react-docgen#example) or as a static property of the class.
 3. Your component may define default props as `getDefaultProps` method (`React.createClass()` syntax), or as a `defaultProps` static property of the class.
-4. You should add a JSDoc-style comment block with a description and an optional `@examples` row.
+4. You should add a JSDoc-style comment block for each prop, with a description and optional `@examples`.
 
         // createClass() example
         const MyComponent = React.createClass({
