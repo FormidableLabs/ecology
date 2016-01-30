@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: __dirname,
     filename: "main.js",
-    publicPath: "/assets/"
+    publicPath: "/"
   },
   resolve: _.merge({}, prodCfg.resolve, {
     alias: {
