@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Ecology from "../src/index";
 import * as docgen from "react-docgen";
-import SampleClass from './sample'
+import SampleClass from "./sample";
 
 import "./styles.styl";
 

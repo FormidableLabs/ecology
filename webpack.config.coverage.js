@@ -8,7 +8,7 @@ var testCfg = require("./webpack.config.test");
 module.exports = _.merge({}, testCfg, {
   isparta: {
     babel: {
-      presets: ['es2015', 'stage-1', 'react']
+      presets: ["es2015", "stage-1", "react"]
     }
   },
   module: {
