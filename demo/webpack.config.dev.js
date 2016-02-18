@@ -31,7 +31,10 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: [/node_modules/],
-        loaders: ["babel-loader?stage=0"]
+        loader: "babel-loader",
+        query: {
+          presets: ['react', 'es2015', 'stage-0']
+        }
       }, {
         test: /\.(css|styl)$/,
         loader: "style-loader!css-loader!autoprefixer-loader!stylus-loader"
