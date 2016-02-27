@@ -1,5 +1,10 @@
 # Ecology Changelog
 
+## 1.2.0 (2016-02-26)
+
+  * Ignore source maps in git and npm
+  * Update release process in development guide
+
 ## 1.1.0 (2016-01-29)
 
   * Added usage documentation
