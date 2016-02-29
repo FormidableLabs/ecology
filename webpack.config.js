@@ -30,7 +30,10 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: [/node_modules/],
-        loader: "babel-loader?stage=0"
+        loader: "babel-loader",
+        query: {
+          presets: ["react", "es2015", "stage-0"]
+        }
       }, {
         test: /\.css$/,
         loader: "style-loader!css-loader"
