@@ -60,16 +60,6 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  modifySource(codeSource, dropdownObject, variableName) {
-    if (variableName && dropdownObject) {
-      dropdownObject._selected = dropdownObject._selected ?
-        dropdownObject._selected :
-        Object.keys(dropdownObject)[0];
-
-      return codeSource.replace(variableName, dropdownObject._selected);
-    }
-    return codeSource;
-  }
   getPlaygroundComponent(noRender, source, index) {
     const {markdown} = this.props;
     const matches = markdown.match((noRender ? /(_norender_dropdown=).*/gi : /(_dropdown=).*/gi));
