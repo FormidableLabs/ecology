@@ -4,7 +4,7 @@ const postGist = () => {
   const request = new XMLHttpRequest();
 
   request.onreadystatechange = () => {
-    if (request.readyState === 4 && request.status.toString()[0] === "2") {
+    if (request.readyState === 4 && request.status === 200) {
       // request.responseText
     }
   };

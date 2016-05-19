@@ -5,7 +5,12 @@ import Playground from "component-playground";
 import ExportGist from "./exportgist";
 import Dropdown from "./dropdown";
 
-let hasDropdown = false;
+const findSubStr = (codeString) => {
+  return codeString.split("\n").some((line) => {
+    return ["```playground", "_dropdown="]
+      .every((substring) => line.toLowerCase().indexOf(substring) > -1);
+  });
+};
 
 class Container extends React.Component {
   constructor(props) {
@@ -27,7 +32,11 @@ class Container extends React.Component {
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
         {noExport ? "" : <ExportGist markdown={markdown} scope={scope} />}
-        {hasDropdown ? <Dropdown data={optionList} update={this.updateSelection.bind(this)}/> : ""}
+        {findSubStr(markdown) ?
+          <Dropdown
+            data={optionList}
+            update={this.updateSelection.bind(this)}/>
+          : ""}
       </div>
     );
   }
@@ -61,10 +70,11 @@ class Overview extends React.Component {
     }
     return codeSource;
   }
-  getPlaygroundComponent(noRender, source) {
+  getPlaygroundComponent(noRender, source, index) {
     const {markdown} = this.props;
-    let optionList = hasDropdown ?
-      markdown.match(/(_dropdown=).*/i)[0]
+    const matches = markdown.match((noRender ? /(_norender_dropdown=).*/gi : /(_dropdown=).*/gi));
+    let optionList = matches.length ?
+      matches[index]
         .split("=")[1]
         .replace(/[\][]/g, "")
         .split(",")
@@ -76,37 +86,36 @@ class Overview extends React.Component {
     );
   }
   renderPlaygrounds() {
+    let index;
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
+    index = 0;
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
         ReactDOM.render(
-          this.getPlaygroundComponent(true, source),
+          this.getPlaygroundComponent(true, source, index++),
           playgrounds[p].parentNode
         );
       }
     }
     const playgroundsNoRender =
       Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
+    index = 0;
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
         ReactDOM.render(
-          this.getPlaygroundComponent(false, source),
+          this.getPlaygroundComponent(false, source, index++),
           playgroundsNoRender[p].parentNode
         );
       }
     }
   }
   render() {
-    const findSubStr = (line) => {
-      return line.indexOf("```playground") > -1 && line.indexOf("_dropdown=") > -1;
-    };
-
-    hasDropdown = this.props.markdown.split("\n").some(findSubStr);
+    const hasDropdown = findSubStr(this.props.markdown);
     let filteredMarkdown;
     if (hasDropdown) {
-      filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/i, "");
+      filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/gi, "");
     }
     const markdown = marked(filteredMarkdown ? filteredMarkdown : this.props.markdown);
     return (
