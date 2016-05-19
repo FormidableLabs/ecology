@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import marked from "marked";
 import Playground from "component-playground";
-import ExportGist from "./ExportGist";
-import Dropdown from "./Dropdown";
+import ExportGist from "./exportgist";
+import Dropdown from "./dropdown";
 
 let hasDropdown = false;
 
