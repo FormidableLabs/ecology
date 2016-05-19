@@ -5,13 +5,6 @@ import Playground from "component-playground";
 import ExportGist from "./exportgist";
 import Dropdown from "./dropdown";
 
-const findSubStr = (codeString) => {
-  return codeString.split("\n").some((line) => {
-    return ["```playground", "_dropdown="]
-      .every((substring) => line.toLowerCase().indexOf(substring) > -1);
-  });
-};
-
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +16,8 @@ class Container extends React.Component {
     this.setState({source, selected: e.target.value});
   }
   render() {
-    const {scope, noRender, playgroundtheme, optionList, noExport, markdown} = this.props;
+    const {scope, noRender, playgroundtheme, optionList, exportGist, markdown} = this.props;
+    console.log(exportGist);
     return (
       <div className="Interactive">
         <Playground
@@ -31,8 +25,8 @@ class Container extends React.Component {
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {noExport ? "" : <ExportGist markdown={markdown} scope={scope} />}
-        {findSubStr(markdown) ?
+        {exportGist ? <ExportGist markdown={markdown} scope={scope} /> : ""}
+        {optionList.length ?
           <Dropdown
             data={optionList}
             update={this.updateSelection.bind(this)}/>
@@ -49,7 +43,7 @@ Container.propTypes = {
   optionList: React.PropTypes.array,
   playgroundtheme: React.PropTypes.string,
   scope: React.PropTypes.object,
-  noExport: React.PropTypes.bool
+  exportGist: React.PropTypes.bool
 };
 
 
@@ -60,11 +54,17 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  getPlaygroundComponent(noRender, source, index) {
+  mountPlaygroundComponent(noRender, source, index) {
     const {markdown} = this.props;
-    const matches = markdown.match((noRender ? /(_norender_dropdown=).*/gi : /(_dropdown=).*/gi));
-    let optionList = matches.length ?
-      matches[index]
+    const playgroundArray = markdown.match(/(```playground).*/gi);
+    const filteredArray = playgroundArray
+      .filter((line) => {
+        const i = line.toLowerCase().indexOf('_norender') > -1;
+        return noRender ? !i : i;
+      });
+    const matches = filteredArray[index].match(/(_dropdown=).*/gi);
+    let optionList = matches && matches.length ?
+      matches[0]
         .split("=")[1]
         .replace(/[\][]/g, "")
         .split(",")
@@ -83,7 +83,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
         ReactDOM.render(
-          this.getPlaygroundComponent(true, source, index++),
+          this.mountPlaygroundComponent(true, source, index++),
           playgrounds[p].parentNode
         );
       }
@@ -95,19 +95,15 @@ class Overview extends React.Component {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
         ReactDOM.render(
-          this.getPlaygroundComponent(false, source, index++),
+          this.mountPlaygroundComponent(false, source, index++),
           playgroundsNoRender[p].parentNode
         );
       }
     }
   }
   render() {
-    const hasDropdown = findSubStr(this.props.markdown);
-    let filteredMarkdown;
-    if (hasDropdown) {
-      filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/gi, "");
-    }
-    const markdown = marked(filteredMarkdown ? filteredMarkdown : this.props.markdown);
+    const filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/gi, "");
+    const markdown = marked(filteredMarkdown);
     return (
       <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
       </div>
@@ -119,7 +115,4 @@ export default Overview;
 
 Overview.propTypes = {
   markdown: React.PropTypes.string,
-  playgroundtheme: React.PropTypes.string,
-  scope: React.PropTypes.object,
-  noExport: React.PropTypes.bool
 };

@@ -20,6 +20,7 @@ class Docs extends React.Component {
     return (
       <div className="demo">
         <Ecology
+          exportGist={true}
           overview={require("!!raw!./ecology.md")}
           source={docgen.parse(require("!!raw!./sample"))}
           scope={{
