@@ -7,11 +7,44 @@ import Dropdown from "./Dropdown";
 
 let hasDropdown = false;
 
-class Overview extends React.Component {
+class Container extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {source: null};
+    this.state = {source: props.source, selected: props.optionList[0]};
   }
+  updateSelection(e) {
+    const selected = this.state.selected;
+    const source = this.state.source.replace(new RegExp(selected, "g"), e.target.value);
+    this.setState({source, selected: e.target.value});
+  }
+  render() {
+    const {scope, noRender, playgroundtheme, optionList, noExport, markdown} = this.props;
+    return (
+      <div className="Interactive">
+        <Playground
+          codeText={this.state.source}
+          scope={scope}
+          noRender={noRender}
+          theme={playgroundtheme ? playgroundtheme : "monokai"}/>
+        {noExport ? "" : <ExportGist markdown={markdown} scope={scope} />}
+        {hasDropdown ? <Dropdown data={optionList} update={this.updateSelection.bind(this)}/> : ""}
+      </div>
+    );
+  }
+}
+
+Container.propTypes = {
+  markdown: React.PropTypes.string,
+  source: React.PropTypes.string,
+  noRender: React.PropTypes.bool,
+  optionList: React.PropTypes.array,
+  playgroundtheme: React.PropTypes.string,
+  scope: React.PropTypes.object,
+  noExport: React.PropTypes.bool
+};
+
+
+class Overview extends React.Component {
   componentDidMount() {
     this.renderPlaygrounds();
   }
@@ -20,36 +53,29 @@ class Overview extends React.Component {
   }
   modifySource(codeSource, dropdownObject, variableName) {
     if (variableName && dropdownObject) {
-      dropdownObject._selected = dropdownObject._selected ? dropdownObject._selected : Object.keys(dropdownObject)[0];
-      return codeSource.replace(variableName, `${variableName}["${dropdownObject._selected}"]`);
+      dropdownObject._selected = dropdownObject._selected ?
+        dropdownObject._selected :
+        Object.keys(dropdownObject)[0];
+
+      return codeSource.replace(variableName, dropdownObject._selected);
     }
     return codeSource;
   }
-  updateSelection(data) {
-    return (e) => {
-      data._selected = e.target.value;
-      this.renderPlaygrounds();
-    };
-  }
-  getPlaygroundComponent(noRender, codeSource, dropdown) {
-    const {playgroundtheme, scope, noExport, markdown} = this.props;
-    const variableName = hasDropdown ? markdown.match(/(_dropdown=).*/i)[0].split('=')[1].trim() : null;
-    const dropdownObject = scope[variableName] = Object.assign({}, scope[variableName]);
-    const source = this.modifySource(codeSource, dropdownObject, variableName);
+  getPlaygroundComponent(noRender, source) {
+    const {markdown} = this.props;
+    let optionList = hasDropdown ?
+      markdown.match(/(_dropdown=).*/i)[0]
+        .split("=")[1]
+        .replace(/[\][]/g, "")
+        .split(",")
+      : [];
+    optionList = optionList.map((name) => name.trim());
+    const props = {optionList, noRender, source, ...this.props};
     return (
-      <div className="Interactive">
-        <Playground
-          codeText={source}
-          scope={scope}
-          noRender={noRender}
-          theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {noExport ? "" : <ExportGist markdown={markdown} scope={scope} />}
-        {hasDropdown ? <Dropdown data={dropdownObject} update={this.updateSelection(dropdownObject).bind(this)}/> : ""}
-      </div>
+      <Container {...props} />
     );
   }
   renderPlaygrounds() {
-    console.log('renenernren')
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
@@ -73,12 +99,14 @@ class Overview extends React.Component {
     }
   }
   render() {
-    const findSubStr = (line) => line.indexOf('```playground') > -1 && line.indexOf('_dropdown=') > -1;
+    const findSubStr = (line) => {
+      return line.indexOf("```playground") > -1 && line.indexOf("_dropdown=") > -1;
+    };
 
-    hasDropdown = this.props.markdown.split('\n').some(findSubStr);
+    hasDropdown = this.props.markdown.split("\n").some(findSubStr);
     let filteredMarkdown;
     if (hasDropdown) {
-      filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/i, '');
+      filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/i, "");
     }
     const markdown = marked(filteredMarkdown ? filteredMarkdown : this.props.markdown);
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 class Option extends React.Component {
   render() {
@@ -12,10 +12,9 @@ Option.propTypes = {
 
 export default class Dropdown extends React.Component {
   render() {
-    const dataKeys = Object.keys(this.props.data).filter(name => name !== '_selected');
     return (
-      <select onChange={this.props.update} defaultValue={this.props.data._selected}>
-        {dataKeys.map((name, i) => {
+      <select onChange={this.props.update}>
+        {this.props.data.map((name, i) => {
           return (
             <Option
               name={name}
@@ -29,6 +28,6 @@ export default class Dropdown extends React.Component {
 }
 
 Dropdown.propTypes = {
-  data: React.PropTypes.object,
+  data: React.PropTypes.array,
   update: React.PropTypes.func
 };
