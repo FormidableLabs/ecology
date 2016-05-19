@@ -17,7 +17,6 @@ class Container extends React.Component {
   }
   render() {
     const {scope, noRender, playgroundtheme, optionList, exportGist, markdown} = this.props;
-    console.log(exportGist);
     return (
       <div className="Interactive">
         <Playground
@@ -59,7 +58,7 @@ class Overview extends React.Component {
     const playgroundArray = markdown.match(/(```playground).*/gi);
     const filteredArray = playgroundArray
       .filter((line) => {
-        const i = line.toLowerCase().indexOf('_norender') > -1;
+        const i = line.toLowerCase().indexOf("_norender") > -1;
         return noRender ? !i : i;
       });
     const matches = filteredArray[index].match(/(_dropdown=).*/gi);
@@ -114,5 +113,5 @@ class Overview extends React.Component {
 export default Overview;
 
 Overview.propTypes = {
-  markdown: React.PropTypes.string,
+  markdown: React.PropTypes.string
 };
