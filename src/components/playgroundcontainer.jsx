@@ -6,15 +6,10 @@ import Dropdown from "./dropdown";
 export default class PlaygroundContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {source: props.source, selected: props.optionList[0]};
-  }
-  updateSelection(e) {
-    const selected = this.state.selected;
-    const source = this.state.source.replace(new RegExp(selected, "g"), e.target.value);
-    this.setState({source, selected: e.target.value});
+    this.state = {source: props.source};
   }
   render() {
-    const {scope, noRender, playgroundtheme, optionList, exportGist, markdown} = this.props;
+    const {scope, noRender, playgroundtheme, exportGist, markdown} = this.props;
     return (
       <div className="Interactive">
         <Playground
@@ -22,12 +17,7 @@ export default class PlaygroundContainer extends React.Component {
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {exportGist ? <ExportGist markdown={markdown} scope={scope} /> : ""}
-        {optionList.length ?
-          <Dropdown
-            data={optionList}
-            update={this.updateSelection.bind(this)}/>
-          : ""}
+        {exportGist ? <ExportGist source={this.state.source} /> : ''}
       </div>
     );
   }

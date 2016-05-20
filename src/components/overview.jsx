@@ -11,22 +11,7 @@ class Overview extends React.Component {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
   mountContainer(noRender, source, index) {
-    const {markdown} = this.props;
-    const playgroundArray = markdown.match(/(```playground).*/gi);
-    const filteredArray = playgroundArray
-      .filter((line) => {
-        const i = line.toLowerCase().indexOf("_norender") > -1;
-        return noRender ? !i : i;
-      });
-    const matches = filteredArray[index].match(/(_dropdown=).*/gi);
-    let optionList = matches && matches.length ?
-      matches[0]
-        .split("=")[1]
-        .replace(/[\][]/g, "")
-        .split(",")
-      : [];
-    optionList = optionList.map((name) => name.trim());
-    const props = {optionList, noRender, source, ...this.props};
+    const props = {noRender, source, ...this.props};
     return (
       <PlaygroundContainer {...props} />
     );
@@ -58,8 +43,7 @@ class Overview extends React.Component {
     }
   }
   render() {
-    const filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/gi, "");
-    const markdown = marked(filteredMarkdown);
+    const markdown = marked(this.props.markdown);
     return (
       <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
       </div>
