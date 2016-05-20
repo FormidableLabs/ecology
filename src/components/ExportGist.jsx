@@ -20,7 +20,7 @@ export default class ExportGist extends React.Component {
       public: true,
       files: {
         "code.md": {
-          "content": `\`\`\` \n ${this.props.source} \n \`\`\` ` 
+          "content": `\`\`\` \n ${this.props.source} \n \`\`\``
         }
       }
     };
@@ -33,7 +33,11 @@ export default class ExportGist extends React.Component {
       <span>
         {response ?
           <button>
-            <a style={{textDecoration: "none"}} target="_blank" href={this.state.response}>go there!</a>
+            <a style={{textDecoration: "none"}}
+              target="_blank"
+              href={this.state.response}>
+              go there!
+            </a>
           </button>
           :
           <button onClick={this.postGist.bind(this)}>export as gist</button>
