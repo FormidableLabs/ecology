@@ -10,7 +10,7 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  mountPlaygroundComponent(noRender, source, index) {
+  mountContainer(noRender, source, index) {
     const {markdown} = this.props;
     const playgroundArray = markdown.match(/(```playground).*/gi);
     const filteredArray = playgroundArray
@@ -39,7 +39,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
         ReactDOM.render(
-          this.mountPlaygroundComponent(true, source, index++),
+          this.mountContainer(true, source, index++),
           playgrounds[p].parentNode
         );
       }
@@ -51,7 +51,7 @@ class Overview extends React.Component {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
         ReactDOM.render(
-          this.mountPlaygroundComponent(false, source, index++),
+          this.mountContainer(false, source, index++),
           playgroundsNoRender[p].parentNode
         );
       }
