@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import marked from "marked";
-import PlaygroundContainer from "./playgroundcontainer";
+import PlaygroundContainer from "./playground-container";
 
 class Overview extends React.Component {
   componentDidMount() {
@@ -10,7 +10,7 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  mountContainer(noRender, source) {
+  mountContainer(source, noRender) {
     const props = {noRender, source, ...this.props};
     return (
       <PlaygroundContainer {...props} />
@@ -22,7 +22,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
         ReactDOM.render(
-          this.mountContainer(true, source),
+          this.mountContainer(source, false),
           playgrounds[p].parentNode
         );
       }
@@ -33,7 +33,7 @@ class Overview extends React.Component {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
         ReactDOM.render(
-          this.mountContainer(false, source),
+          this.mountContainer(source, false),
           playgroundsNoRender[p].parentNode
         );
       }
