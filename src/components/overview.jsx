@@ -10,7 +10,7 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  mountContainer(noRender, source, index) {
+  findDropdownVariables(index, noRender) {
     const {markdown} = this.props;
     const playgroundArray = markdown.match(/(```playground).*/gi);
     const filteredArray = playgroundArray
@@ -19,13 +19,17 @@ class Overview extends React.Component {
         return noRender ? !i : i;
       });
     const matches = filteredArray[index].match(/(_dropdown=).*/gi);
-    let optionList = matches && matches.length ?
+    const options = matches && matches.length ?
       matches[0]
         .split("=")[1]
         .replace(/[\][]/g, "")
         .split(",")
       : [];
-    optionList = optionList.map((name) => name.trim());
+    
+    return options.map((name) => name.trim());
+  }
+  mountContainer(source, index, noRender) {
+    const optionList = findDropdownVariables(index, noRender);
     const props = {optionList, noRender, source, ...this.props};
     return (
       <PlaygroundContainer {...props} />
