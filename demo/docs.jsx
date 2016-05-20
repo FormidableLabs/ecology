@@ -7,14 +7,6 @@ import SampleClass from "./sample";
 
 import "./styles.styl";
 
-const option1 = "hello";
-const option2 = "greetings";
-const option3 = "goodbye";
-const option4 = "dat";
-const option5 = "be";
-const option6 = "cool";
-
-
 class Docs extends React.Component {
   render() {
     return (
@@ -23,17 +15,7 @@ class Docs extends React.Component {
           exportGist={true}
           overview={require("!!raw!./ecology.md")}
           source={docgen.parse(require("!!raw!./sample"))}
-          scope={{
-            React,
-            ReactDOM,
-            SampleClass,
-            option1,
-            option2,
-            option3,
-            option4,
-            option5,
-            option6
-          }}
+          scope={{React, ReactDOM, SampleClass}}
           playgroundtheme="blackboard"/>
       </div>
     );

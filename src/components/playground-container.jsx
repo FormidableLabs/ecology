@@ -1,6 +1,6 @@
 import React from "react";
 import Playground from "component-playground";
-import ExportGist from "./exportgist";
+import ExportGist from "./export-gist";
 
 export default class PlaygroundContainer extends React.Component {
   constructor(props) {

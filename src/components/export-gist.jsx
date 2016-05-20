@@ -16,11 +16,10 @@ export default class ExportGist extends React.Component {
     };
     request.open("POST", "https://api.github.com/gists");
     const data = {
-      description: "the description for this gist",
       public: true,
       files: {
-        "code.md": {
-          "content": `\`\`\` \n ${this.props.source} \n \`\`\``
+        "ecology_code.js": {
+          "content": this.props.source
         }
       }
     };
@@ -32,15 +31,20 @@ export default class ExportGist extends React.Component {
     return (
       <span>
         {response ?
-          <button>
-            <a style={{textDecoration: "none"}}
+          <button className="gist-link-button">
+            <a className="gist-link"
+              style={{textDecoration: "none", color: "inherit"}}
               target="_blank"
               href={this.state.response}>
               go there!
             </a>
           </button>
           :
-          <button onClick={this.postGist.bind(this)}>export as gist</button>
+          <button
+            className="gist-export-button"
+            onClick={this.postGist.bind(this)}>
+            export to gist
+          </button>
         }
       </span>
     );
