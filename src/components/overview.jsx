@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import marked from "marked";
-import PlaygroundContainer from "./playgroundcontainer";
+import PlaygroundContainer from "./playground-container";
 
 class Overview extends React.Component {
   componentDidMount() {
@@ -29,7 +29,7 @@ class Overview extends React.Component {
     return options.map((name) => name.trim());
   }
   mountContainer(source, index, noRender) {
-    const optionList = findDropdownVariables(index, noRender);
+    const optionList = this.findDropdownVariables(index, noRender);
     const props = {optionList, noRender, source, ...this.props};
     return (
       <PlaygroundContainer {...props} />
@@ -43,7 +43,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
         ReactDOM.render(
-          this.mountContainer(true, source, index++),
+          this.mountContainer(source, index++, true),
           playgrounds[p].parentNode
         );
       }
@@ -55,7 +55,7 @@ class Overview extends React.Component {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
         ReactDOM.render(
-          this.mountContainer(false, source, index++),
+          this.mountContainer(source, index++, false),
           playgroundsNoRender[p].parentNode
         );
       }

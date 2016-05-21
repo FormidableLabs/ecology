@@ -22,7 +22,7 @@ export default class PlaygroundContainer extends React.Component {
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {exportGist ? <ExportGist markdown={markdown} scope={scope} /> : ""}
+        {exportGist ? <ExportGist source={this.state.source} /> : ""}
         {optionList.length ?
           <Dropdown
             data={optionList}
