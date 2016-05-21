@@ -1,7 +1,7 @@
 import React from "react";
 import Playground from "component-playground";
 import ExportGist from "./export-gist";
-import Dropdown from "./dropdown";
+import Dropdown from "./drop-down";
 
 export default class PlaygroundContainer extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class PlaygroundContainer extends React.Component {
     this.setState({source, selected: e.target.value});
   }
   render() {
-    const {scope, noRender, playgroundtheme, optionList, exportGist, markdown} = this.props;
+    const {scope, noRender, playgroundtheme, optionList, exportGist} = this.props;
     return (
       <div className="Interactive">
         <Playground

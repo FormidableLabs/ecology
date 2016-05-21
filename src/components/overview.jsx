@@ -25,7 +25,7 @@ class Overview extends React.Component {
         .replace(/[\][]/g, "")
         .split(",")
       : [];
-    
+
     return options.map((name) => name.trim());
   }
   mountContainer(source, index, noRender) {
