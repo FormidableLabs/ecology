@@ -22,7 +22,7 @@ class Overview extends React.Component {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
         ReactDOM.render(
-          this.mountContainer(source, false),
+          this.mountContainer(source, true),
           playgrounds[p].parentNode
         );
       }
