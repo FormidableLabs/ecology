@@ -28,9 +28,9 @@ class Overview extends React.Component {
 
     return options.map((name) => name.trim());
   }
-  mountContainer(source, index, noRender) {
+  mountContainer(source, index, parent, noRender) {
     const optionList = this.findDropdownVariables(index, noRender);
-    const props = {optionList, noRender, source, ...this.props};
+    const props = {parent, optionList, noRender, source, ...this.props};
     return (
       <PlaygroundContainer {...props} />
     );
@@ -42,8 +42,9 @@ class Overview extends React.Component {
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
+        const parent = playgrounds[p].parentNode;
         ReactDOM.render(
-          this.mountContainer(source, index++, true),
+          this.mountContainer(source, index++, parent, true),
           playgrounds[p].parentNode
         );
       }
@@ -54,16 +55,16 @@ class Overview extends React.Component {
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
+        const parent = playgroundsNoRender[p].parentNode;
         ReactDOM.render(
-          this.mountContainer(source, index++, false),
+          this.mountContainer(source, index++, parent, false),
           playgroundsNoRender[p].parentNode
         );
       }
     }
   }
   render() {
-    const filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/gi, "");
-    const markdown = marked(filteredMarkdown);
+    const markdown = marked(this.props.markdown);
     return (
       <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
       </div>

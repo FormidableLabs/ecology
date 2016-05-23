@@ -14,7 +14,7 @@ export default class PlaygroundContainer extends React.Component {
     this.setState({source, selected: e.target.value});
   }
   render() {
-    const {scope, noRender, playgroundtheme, optionList, exportGist} = this.props;
+    const {parent, scope, noRender, playgroundtheme, optionList, exportGist} = this.props;
     return (
       <div className="Interactive">
         <Playground
@@ -22,7 +22,7 @@ export default class PlaygroundContainer extends React.Component {
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {exportGist ? <ExportGist source={this.state.source} /> : ""}
+        {exportGist ? <ExportGist containerElement={parent} /> : ""}
         {optionList.length ?
           <Dropdown
             data={optionList}
