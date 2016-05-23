@@ -64,7 +64,8 @@ class Overview extends React.Component {
     }
   }
   render() {
-    const markdown = marked(this.props.markdown);
+    const filteredMarkdown = this.props.markdown.replace(/_dropdown=(.*)/gi, "");
+    const markdown = marked(filteredMarkdown);
     return (
       <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
       </div>
