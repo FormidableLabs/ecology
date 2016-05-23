@@ -8,7 +8,7 @@ export default class PlaygroundContainer extends React.Component {
     this.state = {source: props.source};
   }
   render() {
-    const {scope, noRender, playgroundtheme, exportGist} = this.props;
+    const {parent, scope, noRender, playgroundtheme, exportGist} = this.props;
     return (
       <div className="Interactive">
         <Playground
@@ -16,13 +16,14 @@ export default class PlaygroundContainer extends React.Component {
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {exportGist ? <ExportGist source={this.state.source} /> : ""}
+        {exportGist ? <ExportGist containerElement={parent} /> : ""}
       </div>
     );
   }
 }
 
 PlaygroundContainer.propTypes = {
+  parent: React.PropTypes.object,
   source: React.PropTypes.string,
   noRender: React.PropTypes.bool,
   playgroundtheme: React.PropTypes.string,

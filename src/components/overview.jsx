@@ -10,8 +10,8 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  mountContainer(source, noRender) {
-    const props = {noRender, source, ...this.props};
+  mountContainer(source, parent, noRender) {
+    const props = {parent, noRender, source, ...this.props};
     return (
       <PlaygroundContainer {...props} />
     );
@@ -21,8 +21,9 @@ class Overview extends React.Component {
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].textContent;
+        const parent = playgrounds[p].parentNode;
         ReactDOM.render(
-          this.mountContainer(source, true),
+          this.mountContainer(source, parent, true),
           playgrounds[p].parentNode
         );
       }
@@ -32,8 +33,9 @@ class Overview extends React.Component {
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].textContent;
+        const parent = playgroundsNoRender[p].parentNode;
         ReactDOM.render(
-          this.mountContainer(source, false),
+          this.mountContainer(source, parent, false),
           playgroundsNoRender[p].parentNode
         );
       }
