@@ -1,8 +1,7 @@
-import React from "react/addons";
+import React from "react";
+import TestUtils from "react-addons-test-utils";
 
 import API from "src/components/api";
-
-const TestUtils = React.addons.TestUtils;
 
 describe("components/api", function () {
 
