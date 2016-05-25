@@ -1,5 +1,10 @@
 # Ecology Changelog
 
+## 1.3.0 (2016-05-25)
+
+  * Update component-playground
+  * Support React 15
+
 ## 1.2.0 (2016-02-26)
 
   * Ignore source maps in git and npm
