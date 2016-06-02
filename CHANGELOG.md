@@ -1,5 +1,9 @@
 # Ecology Changelog
 
+## 1.4.0 (2016-06-02)
+
+  * Update component-playground and radium
+
 ## 1.3.0 (2016-05-25)
 
   * Update component-playground
