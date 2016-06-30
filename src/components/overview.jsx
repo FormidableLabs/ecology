@@ -47,18 +47,14 @@ class Overview extends React.Component {
   }
   renderMarkdown() {
     const { customRenderers, markdown } = this.props;
-    let renderedMarkdown = marked(markdown);
-
     if (customRenderers) {
       const renderer = new marked.Renderer();
-      Object.keys(customRenderers).forEach((key) => renderer[key] = customRenderers[key]);
-      renderedMarkdown = marked(markdown, { renderer });
+      Object.assign(renderer, customRenderers);
+      return marked(markdown, { renderer });
     }
-
-    return renderedMarkdown;
+    return marked(markdown);
   }
   render() {
-
     return (
       <div ref="overview" dangerouslySetInnerHTML={{__html: this.renderMarkdown()}} />
     );
