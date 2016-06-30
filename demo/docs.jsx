@@ -17,9 +17,7 @@ class Docs extends React.Component {
           scope={{React, ReactDOM, SampleClass}}
           playgroundtheme="blackboard"
           customRenderers={{
-            link: function(href, title, text) {
-              return `<a href=${href} target="_blank">${text}</a>`;
-            }
+            link: (href, title, text) => `<a href=${href} target="_blank">${text}</a>`
           }}
         />
       </div>
