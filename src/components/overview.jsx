@@ -45,10 +45,23 @@ class Overview extends React.Component {
       }
     }
   }
+  renderMarkdown() {
+    const { rendererOverrides, markdown } = this.props;
+    let renderedMarkdown = marked(markdown);
+
+    if(rendererOverrides) {
+      for(const r in rendererOverrides) {
+        const renderer = new marked.Renderer();
+        console.log(marked(markdown, { renderer: r }));
+      }
+    }
+
+    return renderedMarkdown;
+  }
   render() {
-    const markdown = marked(this.props.markdown);
+
     return (
-      <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
+      <div ref="overview" dangerouslySetInnerHTML={{__html: this.renderMarkdown()}}>
       </div>
     );
   }
@@ -56,8 +69,19 @@ class Overview extends React.Component {
 
 export default Overview;
 
+Overview.defaultProps = {
+  rendererOverrides: [{
+    link: function(text, level, something) {
+      console.log(text, level, something)
+
+      return text;
+    }
+  }],
+};
+
 Overview.propTypes = {
   markdown: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
-  scope: React.PropTypes.object
+  rendererOverrides: React.PropTypes.array,
+  scope: React.PropTypes.object,
 };

@@ -19,6 +19,7 @@ export default class Ecology extends React.Component {
           <Overview
             markdown={this.props.overview}
             scope={this.props.scope}
+            rendererOverrides={this.props.rendererOverrides}
             playgroundtheme={this.props.playgroundtheme}/>
         </div>
         {this.renderAPI(this.props.source)}
@@ -30,6 +31,7 @@ export default class Ecology extends React.Component {
 Ecology.propTypes = {
   overview: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
+  rendererOverrides: React.PropTypes.array,
   source: React.PropTypes.object,
   scope: React.PropTypes.object
 };

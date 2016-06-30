@@ -14,4 +14,4 @@ ReactDOM.render(<App/>, mountNode);
 ```
 
 ## Automatic Prop Table
-The Prop Table below is automatically generated from comments in the component, see `sample.jsx`.
+The Prop Table below is automatically generated from comments in the component, see `sample.jsx`. [Link](http://google.com)
