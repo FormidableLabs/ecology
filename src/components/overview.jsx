@@ -45,19 +45,31 @@ class Overview extends React.Component {
       }
     }
   }
+  renderMarkdown() {
+    const { customRenderers, markdown } = this.props;
+    if (customRenderers) {
+      const renderer = new marked.Renderer();
+      Object.assign(renderer, customRenderers);
+      return marked(markdown, { renderer });
+    }
+    return marked(markdown);
+  }
   render() {
-    const markdown = marked(this.props.markdown);
     return (
-      <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
-      </div>
+      <div ref="overview" dangerouslySetInnerHTML={{__html: this.renderMarkdown()}} />
     );
   }
 }
 
 export default Overview;
 
+Overview.defaultProps = {
+  customRenderers: null
+};
+
 Overview.propTypes = {
   markdown: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
+  customRenderers: React.PropTypes.object,
   scope: React.PropTypes.object
 };
