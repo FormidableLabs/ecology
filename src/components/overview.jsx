@@ -50,10 +50,12 @@ class Overview extends React.Component {
     let renderedMarkdown = marked(markdown);
 
     if(rendererOverrides) {
-      for(const r in rendererOverrides) {
-        const renderer = new marked.Renderer();
-        console.log(marked(markdown, { renderer: r }));
-      }
+      const renderer = new marked.Renderer();
+
+      Object.keys(rendererOverrides).forEach((key) => {
+       renderer[key] = rendererOverrides[key];
+       console.log(marked(markdown, { renderer: renderer }));
+     });
     }
 
     return renderedMarkdown;
@@ -70,18 +72,18 @@ class Overview extends React.Component {
 export default Overview;
 
 Overview.defaultProps = {
-  rendererOverrides: [{
-    link: function(text, level, something) {
-      console.log(text, level, something)
+  rendererOverrides: {
+    link: function(href, title, text) {
+      console.log(href, title, text)
 
       return text;
     }
-  }],
+  },
 };
 
 Overview.propTypes = {
   markdown: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
-  rendererOverrides: React.PropTypes.array,
+  rendererOverrides: React.PropTypes.object,
   scope: React.PropTypes.object,
 };
