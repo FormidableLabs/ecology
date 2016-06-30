@@ -214,7 +214,7 @@ Create these files according to the below examples:
 
 ### Optional Props
 
-- __rendererOverrides__ - Pass an object with custom [marked](https://github.com/chjj/marked) renderer overrides. ex `link: function(href, title, text) {return href}`. A list of available elements is [available here](https://github.com/chjj/marked/blob/88ce4df47c4d994dc1b1df1477a21fb893e11ddc/lib/marked.js#L764).
+- __rendererOverrides__ - Pass an object with custom [marked](https://github.com/chjj/marked) renderer overrides. ex `link: function(href, title, text) {return href}`. A list of available elements is [available here](https://github.com/chjj/marked/blob/88ce4df47c4d994dc1b1df1477a21fb893e11ddc/lib/marked.js#L764). *Note:* Must return a string.
 
 ## Deploying Your Docs
 

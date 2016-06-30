@@ -16,6 +16,11 @@ class Docs extends React.Component {
           source={docgen.parse(require("!!raw!./sample"))}
           scope={{React, ReactDOM, SampleClass}}
           playgroundtheme="blackboard"
+          rendererOverrides={{
+            link: function(href, title, text) {
+              return `<a href=${href} target="_blank">${text}</a>`;
+            }
+          }}
         />
       </div>
     );
