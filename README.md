@@ -212,6 +212,10 @@ Create these files according to the below examples:
 - __Source__ - React class source file in parsed [`react-docgen`](https://github.com/reactjs/react-docgen) format
 - __Scope__ - Scope for `component-playground` components. Used by Component Playground to render live code snippets. It needs React, ReactDOM, and your component.
 
+### Optional Props
+
+- __rendererOverrides__ - Pass an object with custom [marked](https://github.com/chjj/marked) renderer overrides. ex `link: function(href, title, text) {return href}`. A list of available elements is [available here](https://github.com/chjj/marked/blob/88ce4df47c4d994dc1b1df1477a21fb893e11ddc/lib/marked.js#L764).
+
 ## Deploying Your Docs
 
 Help us write this documentation!

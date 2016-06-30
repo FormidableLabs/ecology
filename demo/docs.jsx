@@ -15,7 +15,8 @@ class Docs extends React.Component {
           overview={require("!!raw!./ecology.md")}
           source={docgen.parse(require("!!raw!./sample"))}
           scope={{React, ReactDOM, SampleClass}}
-          playgroundtheme="blackboard"/>
+          playgroundtheme="blackboard"
+        />
       </div>
     );
   }
