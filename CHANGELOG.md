@@ -1,5 +1,10 @@
 # Ecology Changelog
 
+## 1.5.0 (2016-07-04)
+
+  * Add support for custom Marked renderers
+  * Fix development build
+
 ## 1.4.0 (2016-06-02)
 
   * Update component-playground and radium
