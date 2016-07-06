@@ -14,7 +14,7 @@ class Overview extends React.Component {
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
-        const source = playgrounds[p].textContent;
+        const source = playgrounds[p].getElementsByClassName("ecologyCode")[0].textContent;
         ReactDOM.render(
           <div className="Interactive">
             <Playground
@@ -31,7 +31,7 @@ class Overview extends React.Component {
       Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
-        const source = playgroundsNoRender[p].textContent;
+        const source = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].textContent;
         ReactDOM.render(
           <div className="Interactive">
             <Playground
@@ -47,12 +47,44 @@ class Overview extends React.Component {
   }
   renderMarkdown() {
     const { customRenderers, markdown } = this.props;
-    if (customRenderers) {
-      const renderer = new marked.Renderer();
-      Object.assign(renderer, customRenderers);
-      return marked(markdown, { renderer });
-    }
-    return marked(markdown);
+    const renderer = new marked.Renderer();
+    const renderers = {
+      code: (code, lang) => {
+        const escape = (html) => {
+          return html
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        };
+
+        if (!lang) {
+          return (
+            `<pre><code>${escape(code)}</code></pre>`
+          );
+        }
+
+        if (lang === "playground" || lang === "playground_norender") {
+          return (
+            `<pre>
+              <code class="lang-${escape(lang)}">
+                <span class="ecologyCode">${escape(code)}</span>
+              </code>
+            </pre>`
+          );
+        }
+
+        return (
+          `<pre>
+            <code class="lang-${escape(lang)}">${escape(code)}</code>
+          </pre>`
+        );
+      },
+      ...customRenderers
+    };
+    Object.assign(renderer, renderers);
+    return marked(markdown, { renderer });
   }
   render() {
     return (
