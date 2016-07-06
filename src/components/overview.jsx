@@ -50,14 +50,14 @@ class Overview extends React.Component {
     const renderer = new marked.Renderer();
     const renderers = {
         code: (code, lang) => {
-            function escape(html) {
-              return html
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
-            }
+          const escape = (html) => {
+            return html
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#39;");
+          };
 
             if (!lang) {
               return (
