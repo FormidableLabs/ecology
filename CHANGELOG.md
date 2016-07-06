@@ -1,5 +1,9 @@
 # Ecology Changelog
 
+## 1.5.1 (2016-07-06)
+
+  * Add classname to `lang-playground` codeblocks
+
 ## 1.5.0 (2016-07-04)
 
   * Add support for custom Marked renderers
