@@ -1,6 +1,6 @@
 {
   "name": "ecology",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "React Component",
   "main": "lib/index.js",
   "repository": {

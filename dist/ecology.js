@@ -352,6 +352,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(2);
@@ -403,7 +405,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
 	      for (var p in playgrounds) {
 	        if (playgrounds.hasOwnProperty(p)) {
-	          var source = playgrounds[p].textContent;
+	          var source = playgrounds[p].getElementsByClassName("ecologyCode")[0].textContent;
 	          _reactDom2.default.render(_react2.default.createElement(
 	            "div",
 	            { className: "Interactive" },
@@ -418,7 +420,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var playgroundsNoRender = Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
 	      for (var _p in playgroundsNoRender) {
 	        if (playgroundsNoRender.hasOwnProperty(_p)) {
-	          var _source = playgroundsNoRender[_p].textContent;
+	          var _source = playgroundsNoRender[_p].getElementsByClassName("ecologyCode")[0].textContent;
 	          _reactDom2.default.render(_react2.default.createElement(
 	            "div",
 	            { className: "Interactive" },
@@ -438,12 +440,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var customRenderers = _props.customRenderers;
 	      var markdown = _props.markdown;
 	
-	      if (customRenderers) {
-	        var renderer = new _marked2.default.Renderer();
-	        Object.assign(renderer, customRenderers);
-	        return (0, _marked2.default)(markdown, { renderer: renderer });
-	      }
-	      return (0, _marked2.default)(markdown);
+	      var renderer = new _marked2.default.Renderer();
+	      var renderers = _extends({
+	        code: function code(_code, lang) {
+	          var escape = function escape(html) {
+	            return html.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+	          };
+	
+	          if (!lang) {
+	            return "<pre><code>" + escape(_code) + "</code></pre>";
+	          }
+	
+	          if (lang === "playground" || lang === "playground_norender") {
+	            return "<pre>\n              <code class=\"lang-" + escape(lang) + "\">\n                <span class=\"ecologyCode\">" + escape(_code) + "</span>\n              </code>\n            </pre>";
+	          }
+	
+	          return "<pre>\n            <code class=\"lang-" + escape(lang) + "\">" + escape(_code) + "</code>\n          </pre>";
+	        }
+	      }, customRenderers);
+	      Object.assign(renderer, renderers);
+	      return (0, _marked2.default)(markdown, { renderer: renderer });
 	    }
 	  }, {
 	    key: "render",
