@@ -59,27 +59,27 @@ class Overview extends React.Component {
             .replace(/'/g, "&#39;");
         };
 
-          if (!lang) {
-            return (
-              `<pre><code>${escape(code)}</code></pre>`
-            );
-          }
+        if (!lang) {
+          return (
+            `<pre><code>${escape(code)}</code></pre>`
+          );
+        }
 
-          if (lang === "playground" || lang === "playground_norender") {
-            return (
-              `<pre>
-                <code class="lang-${escape(lang)}">
-                  <span class="ecologyCode">${escape(code)}</span>
-                </code>
-              </pre>`
-            );
-          }
-
+        if (lang === "playground" || lang === "playground_norender") {
           return (
             `<pre>
-              <code class="lang-${escape(lang)}">${escape(code)}</code>
+              <code class="lang-${escape(lang)}">
+                <span class="ecologyCode">${escape(code)}</span>
+              </code>
             </pre>`
           );
+        }
+
+        return (
+          `<pre>
+            <code class="lang-${escape(lang)}">${escape(code)}</code>
+          </pre>`
+        );
       },
       ...customRenderers
     };
