@@ -102,6 +102,7 @@
     "sinon": "^1.16.1",
     "sinon-chai": "^2.8.0",
     "style-loader": "~0.8.0",
+    "stylus": "^0.54.5",
     "stylus-loader": "^2.1.1",
     "url-loader": "~0.5.5",
     "webpack-dev-server": "^1.14.0"
