@@ -59,27 +59,16 @@ class Overview extends React.Component {
             .replace(/'/g, "&#39;");
         };
 
+        // Use regular strings, es6 templates cause spaces to be inserted
         if (!lang) {
-          return (
-            `<pre><code>${escape(code)}</code></pre>`
-          );
+          return ('<pre><code>' + escape(code) + '</code></pre>');
         }
 
         if (lang === "playground" || lang === "playground_norender") {
-          return (
-            `<pre>
-              <code class="lang-${escape(lang)}">
-                <span class="ecologyCode">${escape(code)}</span>
-              </code>
-            </pre>`
-          );
+          return ('<pre><code class="lang-' + escape(lang) + '"><span class="ecologyCode">' + escape(code) + '</span></code></pre>');
         }
 
-        return (
-          `<pre>
-            <code class="lang-${escape(lang)}">${escape(code)}</code>
-          </pre>`
-        );
+        return ('<pre><code class="lang-' + escape(lang) + '">' + escape(code) + '</code></pre>');
       },
       ...customRenderers
     };
