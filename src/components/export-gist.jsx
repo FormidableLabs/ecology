@@ -12,7 +12,7 @@ export default class ExportGist extends React.Component {
         window.open(response.html_url, "_blank");
       }
     };
-    const content = containerElement.getElementsByClassName("codemirror-code")[0];
+    const content = containerElement.getElementsByClassName("ecologyCode")[0];
     request.open("POST", "https://api.github.com/gists");
     const data = {
       public: true,
@@ -30,7 +30,7 @@ export default class ExportGist extends React.Component {
       <button
         className="gist-export-button"
         onClick={this.postGist.bind(this)}>
-        export to gist
+        Export to Gist
       </button>
     );
   }
@@ -39,5 +39,3 @@ export default class ExportGist extends React.Component {
 ExportGist.propTypes = {
   containerElement: React.PropTypes.object
 };
-
-

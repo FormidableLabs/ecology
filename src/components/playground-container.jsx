@@ -11,12 +11,12 @@ export default class PlaygroundContainer extends React.Component {
     const {parent, scope, noRender, playgroundtheme, exportGist} = this.props;
     return (
       <div className="Interactive">
+        {exportGist ? <ExportGist containerElement={parent} /> : ""}
         <Playground
           codeText={this.state.source}
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
-        {exportGist ? <ExportGist containerElement={parent} /> : ""}
       </div>
     );
   }
@@ -30,4 +30,3 @@ PlaygroundContainer.propTypes = {
   scope: React.PropTypes.object,
   exportGist: React.PropTypes.bool
 };
-
