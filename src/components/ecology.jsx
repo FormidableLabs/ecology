@@ -32,7 +32,7 @@ export default class Ecology extends React.Component {
 Ecology.defaultProps = {
   exportGist: false,
   customRenderers: null
-}
+};
 
 Ecology.propTypes = {
   overview: React.PropTypes.string.isRequired,
