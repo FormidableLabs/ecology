@@ -20,6 +20,7 @@ export default class Ecology extends React.Component {
             exportGist={this.props.exportGist}
             markdown={this.props.overview}
             scope={this.props.scope}
+            customRenderers={this.props.customRenderers}
             playgroundtheme={this.props.playgroundtheme}/>
         </div>
         {this.renderAPI(this.props.source)}
@@ -31,6 +32,7 @@ export default class Ecology extends React.Component {
 Ecology.propTypes = {
   overview: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
+  customRenderers: React.PropTypes.object,
   source: React.PropTypes.object,
   scope: React.PropTypes.object,
   exportGist: React.PropTypes.bool
