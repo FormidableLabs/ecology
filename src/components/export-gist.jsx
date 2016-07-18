@@ -5,7 +5,6 @@ import React from "react";
 export default class ExportGist extends React.Component {
   parseJSON(responseText) {
     try {
-      this.props.setMessage("");
       return JSON.parse(responseText);
     } catch (e) {
       this.props.setMessage("Unable to create Gist");
@@ -14,6 +13,7 @@ export default class ExportGist extends React.Component {
   }
 
   postGist() {
+    this.props.setMessage("");
     const request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 201) {
