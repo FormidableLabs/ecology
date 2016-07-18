@@ -17,11 +17,13 @@ export default class Ecology extends React.Component {
       <div className="Ecology">
         <div className="Overview">
           <Overview
+            copyToClipboard={this.props.copyToClipboard}
+            customRenderers={this.props.customRenderers}
             exportGist={this.props.exportGist}
             markdown={this.props.overview}
+            playgroundtheme={this.props.playgroundtheme}
             scope={this.props.scope}
-            customRenderers={this.props.customRenderers}
-            playgroundtheme={this.props.playgroundtheme}/>
+          />
         </div>
         {this.renderAPI(this.props.source)}
       </div>
@@ -35,10 +37,11 @@ Ecology.defaultProps = {
 }
 
 Ecology.propTypes = {
+  copyToClipboard: React.PropTypes.bool,
+  customRenderers: React.PropTypes.object,
+  exportGist: React.PropTypes.bool,
   overview: React.PropTypes.string.isRequired,
   playgroundtheme: React.PropTypes.string,
-  customRenderers: React.PropTypes.object,
-  source: React.PropTypes.object,
   scope: React.PropTypes.object,
-  exportGist: React.PropTypes.bool
+  source: React.PropTypes.object
 };

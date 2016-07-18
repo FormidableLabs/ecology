@@ -1,6 +1,7 @@
 import React from "react";
 import Playground from "component-playground";
 import ExportGist from "./export-gist";
+import CopyToClipboard from "./copy-to-clipboard";
 
 export default class PlaygroundContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class PlaygroundContainer extends React.Component {
     return (
       <div className="Interactive">
         {exportGist ? <ExportGist containerElement={parent} /> : null}
+        {copyToClipboard ? <CopyToClipboard containerElement={parent} /> : null}
         <Playground
           codeText={this.state.source}
           scope={scope}
@@ -28,5 +30,6 @@ PlaygroundContainer.propTypes = {
   noRender: React.PropTypes.bool,
   playgroundtheme: React.PropTypes.string,
   scope: React.PropTypes.object,
-  exportGist: React.PropTypes.bool
+  exportGist: React.PropTypes.bool,
+  copyToClipboard: React.PropTypes.bool
 };
