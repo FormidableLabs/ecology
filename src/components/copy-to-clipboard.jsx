@@ -30,5 +30,5 @@ export default class CopyToClipboard extends React.Component {
 }
 
 CopyToClipboard.propTypes = {
-  source: React.PropTypes.object
+  source: React.PropTypes.string
 };
