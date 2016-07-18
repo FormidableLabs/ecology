@@ -33,8 +33,8 @@ class Overview extends React.Component {
       Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
-        const source = playgrounds[p].getElementsByClassName("ecologyCode")[0].textContent;
-        const parent = playgrounds[p].getElementsByClassName("ecologyCode")[0].parentNode;
+        const source = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].textContent;
+        const parent = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].parentNode;
         ReactDOM.render(
           this.mountContainer(source, parent, false),
           playgroundsNoRender[p].parentNode
@@ -85,7 +85,7 @@ Overview.defaultProps = {
 };
 
 Overview.propTypes = {
-  markdown: React.PropTypes.string
+  markdown: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
   customRenderers: React.PropTypes.object,
   scope: React.PropTypes.object
