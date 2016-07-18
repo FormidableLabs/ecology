@@ -11,7 +11,7 @@ export default class PlaygroundContainer extends React.Component {
     const {parent, scope, noRender, playgroundtheme, exportGist} = this.props;
     return (
       <div className="Interactive">
-        {exportGist ? <ExportGist containerElement={parent} /> : ""}
+        {exportGist ? <ExportGist containerElement={parent} /> : null}
         <Playground
           codeText={this.state.source}
           scope={scope}

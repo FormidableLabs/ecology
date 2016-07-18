@@ -29,8 +29,13 @@ export default class Ecology extends React.Component {
   }
 }
 
+Ecology.defaultProps = {
+  exportGist: false,
+  customRenderers: null
+}
+
 Ecology.propTypes = {
-  overview: React.PropTypes.string,
+  overview: React.PropTypes.string.isRequired,
   playgroundtheme: React.PropTypes.string,
   customRenderers: React.PropTypes.object,
   source: React.PropTypes.object,

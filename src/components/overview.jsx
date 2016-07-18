@@ -80,10 +80,6 @@ class Overview extends React.Component {
 
 export default Overview;
 
-Overview.defaultProps = {
-  customRenderers: null
-};
-
 Overview.propTypes = {
   markdown: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
