@@ -17,12 +17,11 @@ export default class CopyToClipboard extends React.Component {
   }
 
   render() {
-    const { containerElement } = this.props;
     return (
       <button
         ref="copyToClipboard"
         className="copy-to-clipboard-button"
-        data-clipboard-text={containerElement.getElementsByClassName("ecologyCode")[0].innerText}
+        data-clipboard-text={this.props.source}
       >
         Copy to Clipboard
       </button>
@@ -31,5 +30,5 @@ export default class CopyToClipboard extends React.Component {
 }
 
 CopyToClipboard.propTypes = {
-  containerElement: React.PropTypes.object
+  source: React.PropTypes.object
 };

@@ -6,27 +6,34 @@ import CopyToClipboard from "./copy-to-clipboard";
 export default class PlaygroundContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { source: props.source };
+    this.state = { message: "" };
+    this.setMessage = this.setMessage.bind(this);
   }
+
+  setMessage(string) {
+    this.setState({ message: string });
+  }
+
   renderToolbar() {
-    const { parent, exportGist, copyToClipboard } = this.props;
-    if (exportGist || copyToClipboard) {
-      return (
-        <div className="Toolbar">
-          {exportGist ? <ExportGist containerElement={parent} /> : null}
-          {copyToClipboard ? <CopyToClipboard containerElement={parent} /> : null}
-        </div>
-      );
-    }
-    return null;
+    const { source, exportGist, copyToClipboard } = this.props;
+    return (
+      <div className="Toolbar">
+        {exportGist ? <ExportGist source={source} setMessage={this.setMessage} /> : null}
+        {copyToClipboard ? <CopyToClipboard source={source} /> : null}
+        {this.state.message.length > 0 ?
+          <span className="Toolbar-Message">{this.state.message}</span>
+          : null}
+      </div>
+    );
   }
+
   render() {
-    const { scope, noRender, playgroundtheme } = this.props;
+    const {scope, source, noRender, playgroundtheme, exportGist, copyToClipboard} = this.props;
     return (
       <div className="Interactive">
-        {this.renderToolbar()}
+        {exportGist || copyToClipboard ? this.renderToolbar() : null}
         <Playground
-          codeText={this.state.source}
+          codeText={source}
           scope={scope}
           noRender={noRender}
           theme={playgroundtheme ? playgroundtheme : "monokai"}/>
@@ -36,7 +43,6 @@ export default class PlaygroundContainer extends React.Component {
 }
 
 PlaygroundContainer.propTypes = {
-  parent: React.PropTypes.object,
   source: React.PropTypes.string,
   noRender: React.PropTypes.bool,
   playgroundtheme: React.PropTypes.string,
