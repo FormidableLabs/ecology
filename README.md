@@ -215,6 +215,7 @@ Create these files according to the below examples:
 ### Optional Props
 
 - __customRenderers__ - Pass an object with custom [marked](https://github.com/chjj/marked) renderer methods. ex `link: function(href, title, text) {return href}`. A list of available elements is [available here](https://github.com/chjj/marked#renderer). *Note:* Method must return a string.
+- __exportGist__ - Adds a button to export the playground source as an anonymous Gist on Github. Enabling this adds a `Toolbar` component to the markup, with a `Button-GistExport` component and `Toolbar-Message` area for displaying error messages.
 
 ## Deploying Your Docs
 

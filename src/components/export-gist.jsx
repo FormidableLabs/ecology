@@ -38,7 +38,7 @@ export default class ExportGist extends React.Component {
   render() {
     return (
       <button
-        className="gist-export-button"
+        className="Button-GistExport"
         onClick={() => this.postGist()}
       >
         Export to Gist
