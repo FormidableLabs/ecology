@@ -12,7 +12,7 @@ class Overview extends React.Component {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
   mountContainer(source, noRender) {
-    const props = {source, noRender,  ...this.props};
+    const props = {source, noRender, ...this.props};
     return <PlaygroundContainer {...props} />;
   }
   renderPlaygrounds() {

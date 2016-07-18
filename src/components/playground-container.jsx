@@ -1,5 +1,4 @@
 import React from "react";
-import clone from "lodash";
 import Playground from "component-playground";
 import ExportGist from "./export-gist";
 
@@ -7,7 +6,7 @@ export default class PlaygroundContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: ''
+      message: ""
     };
     this.setMessage = this.setMessage.bind(this);
   }
@@ -18,26 +17,21 @@ export default class PlaygroundContainer extends React.Component {
 
   renderToolbar() {
     const { source, exportGist } = this.props;
-    if (exportGist) {
-      return (
-        <div className="Toolbar">
-          {exportGist ? <ExportGist source={source} setMessage={this.setMessage} /> : null}
-          {
-            this.state.message.length > 0 ?
-              <span className="Toolbar-Message">{this.state.message}</span>
-              : null
-          }
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div className="Toolbar">
+        {exportGist ? <ExportGist source={source} setMessage={this.setMessage} /> : null}
+        {this.state.message.length > 0 ?
+          <span className="Toolbar-Message">{this.state.message}</span>
+          : null}
+      </div>
+    );
   }
 
   render() {
     const {scope, source, noRender, playgroundtheme, exportGist} = this.props;
     return (
       <div className="Interactive">
-        {this.renderToolbar()}
+        {exportGist ? this.renderToolbar() : null}
         <Playground
           codeText={source}
           scope={scope}
