@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 import React from "react";
 import ReactDOM from "react-dom";
 import marked from "marked";
-import Playground from "component-playground";
+import PlaygroundContainer from "./playground-container";
 
 class Overview extends React.Component {
   componentDidMount() {
@@ -10,19 +11,20 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
+  mountContainer(source, parent, noRender) {
+    const props = {parent, noRender, source, ...this.props};
+    return (
+      <PlaygroundContainer {...props} />
+    );
+  }
   renderPlaygrounds() {
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
-        const source = playgrounds[p].textContent;
+        const source = playgrounds[p].getElementsByClassName("ecologyCode")[0].textContent;
+        const parent = playgrounds[p].getElementsByClassName("ecologyCode")[0].parentNode;
         ReactDOM.render(
-          <div className="Interactive">
-            <Playground
-              codeText={source}
-              scope={this.props.scope}
-              noRender={true}
-              theme={this.props.playgroundtheme ? this.props.playgroundtheme : "monokai"}/>
-          </div>,
+          this.mountContainer(source, parent, true),
           playgrounds[p].parentNode
         );
       }
@@ -31,25 +33,47 @@ class Overview extends React.Component {
       Array.prototype.slice.call(this.findPlayground("lang-playground_norender"), 0);
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
-        const source = playgroundsNoRender[p].textContent;
+        const source = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].textContent;
+        const parent = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].parentNode;
         ReactDOM.render(
-          <div className="Interactive">
-            <Playground
-              codeText={source}
-              scope={this.props.scope}
-              noRender={false}
-              theme={this.props.playgroundtheme ? this.props.playgroundtheme : "monokai"}/>
-          </div>,
+          this.mountContainer(source, parent, false),
           playgroundsNoRender[p].parentNode
         );
       }
     }
   }
+  renderMarkdown() {
+    const { customRenderers, markdown } = this.props;
+    const renderer = new marked.Renderer();
+    const renderers = {
+      code: (code, lang) => {
+        const escape = (html) => {
+          return html
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+        };
+        // Use regular strings, es6 templates cause spaces to be inserted
+        if (!lang) {
+          return ("<pre><code>" + escape(code) + "</code></pre>");
+        }
+
+        if (lang === "playground" || lang === "playground_norender") {
+          return ("<pre><code class='lang-" + escape(lang) + "'><span class='ecologyCode'>" + escape(code) + "</span></code></pre>");
+        }
+
+        return ("<pre><code class='lang-" + escape(lang) + "'>" + escape(code) + "</code></pre>");
+      },
+      ...customRenderers
+    };
+    Object.assign(renderer, renderers);
+    return marked(markdown, { renderer });
+  }
   render() {
-    const markdown = marked(this.props.markdown);
     return (
-      <div ref="overview" dangerouslySetInnerHTML={{__html: markdown}}>
-      </div>
+      <div ref="overview" dangerouslySetInnerHTML={{__html: this.renderMarkdown()}} />
     );
   }
 }
@@ -59,5 +83,6 @@ export default Overview;
 Overview.propTypes = {
   markdown: React.PropTypes.string,
   playgroundtheme: React.PropTypes.string,
+  customRenderers: React.PropTypes.object,
   scope: React.PropTypes.object
 };

@@ -17,8 +17,10 @@ export default class Ecology extends React.Component {
       <div className="Ecology">
         <div className="Overview">
           <Overview
+            exportGist={this.props.exportGist}
             markdown={this.props.overview}
             scope={this.props.scope}
+            customRenderers={this.props.customRenderers}
             playgroundtheme={this.props.playgroundtheme}/>
         </div>
         {this.renderAPI(this.props.source)}
@@ -27,9 +29,16 @@ export default class Ecology extends React.Component {
   }
 }
 
+Ecology.defaultProps = {
+  exportGist: false,
+  customRenderers: null
+}
+
 Ecology.propTypes = {
-  overview: React.PropTypes.string,
+  overview: React.PropTypes.string.isRequired,
   playgroundtheme: React.PropTypes.string,
+  customRenderers: React.PropTypes.object,
   source: React.PropTypes.object,
-  scope: React.PropTypes.object
+  scope: React.PropTypes.object,
+  exportGist: React.PropTypes.bool
 };
