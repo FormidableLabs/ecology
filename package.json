@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/FormidableLabs/ecology",
   "scripts": {
+    "start": "npm run hot",
     "postinstall": "node -e \"require('fs').stat('lib', function(e,s){process.exit(e || !s.isDirectory() ? 1 : 0)})\" || npm run build-lib",
     "preversion": "npm run check",
     "version": "npm run clean && npm run build && git add -A dist",

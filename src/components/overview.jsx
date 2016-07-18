@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import marked from "marked";
-import Playground from "component-playground";
+import PlaygroundContainer from "./playground-container";
 
 class Overview extends React.Component {
   componentDidMount() {
@@ -11,19 +11,17 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
+  mountContainer(source, noRender) {
+    const props = {source, noRender, ...this.props};
+    return <PlaygroundContainer {...props} />;
+  }
   renderPlaygrounds() {
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].getElementsByClassName("ecologyCode")[0].textContent;
         ReactDOM.render(
-          <div className="Interactive">
-            <Playground
-              codeText={source}
-              scope={this.props.scope}
-              noRender={true}
-              theme={this.props.playgroundtheme ? this.props.playgroundtheme : "monokai"}/>
-          </div>,
+          this.mountContainer(source, true),
           playgrounds[p].parentNode
         );
       }
@@ -34,13 +32,7 @@ class Overview extends React.Component {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].textContent;
         ReactDOM.render(
-          <div className="Interactive">
-            <Playground
-              codeText={source}
-              scope={this.props.scope}
-              noRender={false}
-              theme={this.props.playgroundtheme ? this.props.playgroundtheme : "monokai"}/>
-          </div>,
+          this.mountContainer(source, false),
           playgroundsNoRender[p].parentNode
         );
       }
@@ -83,10 +75,6 @@ class Overview extends React.Component {
 }
 
 export default Overview;
-
-Overview.defaultProps = {
-  customRenderers: null
-};
 
 Overview.propTypes = {
   markdown: React.PropTypes.string,
