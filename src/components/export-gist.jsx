@@ -1,4 +1,5 @@
 /* global XMLHttpRequest:false window:false */
+/* eslint-disable no-alert */
 import React from "react";
 
 export default class ExportGist extends React.Component {
@@ -8,7 +9,7 @@ export default class ExportGist extends React.Component {
     } catch (e) {
       window.alert("Unable to create Gist");
     }
-    return;
+    return null;
   }
 
   postGist() {
