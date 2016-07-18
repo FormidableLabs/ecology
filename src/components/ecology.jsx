@@ -33,6 +33,7 @@ export default class Ecology extends React.Component {
 
 Ecology.defaultProps = {
   exportGist: false,
+  copyToClipboard: false,
   customRenderers: null
 }
 
