@@ -19,6 +19,8 @@ export default class ExportGist extends React.Component {
       if (request.readyState === 4 && request.status === 201) {
         const response = this.parseJSON(request.responseText);
         window.open(response.html_url, "_blank");
+      } else if (request.status >= 400) {
+        this.props.setMessage("Error connecting to Github");
       }
     };
     request.open("POST", "https://api.github.com/gists");
