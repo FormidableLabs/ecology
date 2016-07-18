@@ -5,7 +5,6 @@ import Clipboard from "clipboard";
 export default class CopyToClipboard extends React.Component {
   constructor(props) {
     super(props);
-    this.clipboard = null;
   }
 
   componentDidMount() {
@@ -23,7 +22,7 @@ export default class CopyToClipboard extends React.Component {
         className="copy-to-clipboard-button"
         data-clipboard-text={this.props.containerElement.getElementsByClassName("ecologyCode")[0].innerText}
       >
-        Copy To Clipboard
+        Copy to Clipboard
       </button>
     );
   }

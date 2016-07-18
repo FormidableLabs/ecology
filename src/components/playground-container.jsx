@@ -6,14 +6,25 @@ import CopyToClipboard from "./copy-to-clipboard";
 export default class PlaygroundContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {source: props.source};
+    this.state = { source: props.source };
+  }
+  renderToolbar() {
+    const { parent, exportGist, copyToClipboard } = this.props;
+    if (exportGist || copyToClipboard) {
+      return (
+        <div className="Toolbar">
+          {exportGist ? <ExportGist containerElement={parent} /> : null}
+          {copyToClipboard ? <CopyToClipboard containerElement={parent} /> : null}
+        </div>
+      );
+    }
+    return null;
   }
   render() {
-    const {parent, scope, noRender, playgroundtheme, exportGist, copyToClipboard} = this.props;
+    const { scope, noRender, playgroundtheme } = this.props;
     return (
       <div className="Interactive">
-        {exportGist ? <ExportGist containerElement={parent} /> : null}
-        {copyToClipboard ? <CopyToClipboard containerElement={parent} /> : null}
+        {this.renderToolbar()}
         <Playground
           codeText={this.state.source}
           scope={scope}
