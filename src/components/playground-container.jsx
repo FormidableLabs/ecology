@@ -9,7 +9,7 @@ export default class PlaygroundContainer extends React.Component {
     this.state = {source: props.source};
   }
   render() {
-    const {parent, scope, noRender, playgroundtheme, exportGist} = this.props;
+    const {parent, scope, noRender, playgroundtheme, exportGist, copyToClipboard} = this.props;
     return (
       <div className="Interactive">
         {exportGist ? <ExportGist containerElement={parent} /> : null}
