@@ -35,7 +35,7 @@ Ecology.defaultProps = {
   exportGist: false,
   copyToClipboard: false,
   customRenderers: null
-}
+};
 
 Ecology.propTypes = {
   copyToClipboard: React.PropTypes.bool,
