@@ -1,4 +1,4 @@
-/* globals XMLHttpRequest:false window:false */
+/* global XMLHttpRequest:false window:false */
 import React from "react";
 
 export default class ExportGist extends React.Component {
