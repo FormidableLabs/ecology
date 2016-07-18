@@ -5,9 +5,10 @@ import React from "react";
 export default class ExportGist extends React.Component {
   parseJSON(responseText) {
     try {
+      this.props.setMessage("");
       return JSON.parse(responseText);
     } catch (e) {
-      window.alert("Unable to create Gist");
+      this.props.setMessage("Unable to create Gist");
     }
     return null;
   }
@@ -44,4 +45,7 @@ export default class ExportGist extends React.Component {
   }
 }
 
-ExportGist.propTypes = { source: React.PropTypes.string.isRequired };
+ExportGist.propTypes = {
+  source: React.PropTypes.string.isRequired,
+  setMessage: React.PropTypes.func.isRequired
+};
