@@ -2,13 +2,21 @@
 import React from "react";
 
 export default class ExportGist extends React.Component {
+  parseJSON(responseText) {
+    try {
+      return JSON.parse(responseText);
+    } catch (e) {
+      window.alert("Unable to create Gist");
+    }
+    return;
+  }
+
   postGist() {
     const {containerElement} = this.props;
-
     const request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 201) {
-        const response = JSON.parse(request.responseText);
+        const response = this.parseJSON(request.responseText);
         window.open(response.html_url, "_blank");
       }
     };
@@ -22,9 +30,9 @@ export default class ExportGist extends React.Component {
         }
       }
     };
-
     request.send(JSON.stringify(data));
   }
+
   render() {
     return (
       <button
