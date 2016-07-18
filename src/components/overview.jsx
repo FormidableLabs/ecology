@@ -11,20 +11,17 @@ class Overview extends React.Component {
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
-  mountContainer(source, parent, noRender) {
-    const props = {parent, noRender, source, ...this.props};
-    return (
-      <PlaygroundContainer {...props} />
-    );
+  mountContainer(source, noRender) {
+    const props = {source, noRender,  ...this.props};
+    return <PlaygroundContainer {...props} />;
   }
   renderPlaygrounds() {
     const playgrounds = Array.prototype.slice.call(this.findPlayground("lang-playground"), 0);
     for (const p in playgrounds) {
       if (playgrounds.hasOwnProperty(p)) {
         const source = playgrounds[p].getElementsByClassName("ecologyCode")[0].textContent;
-        const parent = playgrounds[p].getElementsByClassName("ecologyCode")[0].parentNode;
         ReactDOM.render(
-          this.mountContainer(source, parent, true),
+          this.mountContainer(source, true),
           playgrounds[p].parentNode
         );
       }
@@ -34,9 +31,8 @@ class Overview extends React.Component {
     for (const p in playgroundsNoRender) {
       if (playgroundsNoRender.hasOwnProperty(p)) {
         const source = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].textContent;
-        const parent = playgroundsNoRender[p].getElementsByClassName("ecologyCode")[0].parentNode;
         ReactDOM.render(
-          this.mountContainer(source, parent, false),
+          this.mountContainer(source, false),
           playgroundsNoRender[p].parentNode
         );
       }

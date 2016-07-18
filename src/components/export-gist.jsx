@@ -13,7 +13,6 @@ export default class ExportGist extends React.Component {
   }
 
   postGist() {
-    const {containerElement} = this.props;
     const request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 201) {
@@ -21,13 +20,12 @@ export default class ExportGist extends React.Component {
         window.open(response.html_url, "_blank");
       }
     };
-    const content = containerElement.getElementsByClassName("ecologyCode")[0];
     request.open("POST", "https://api.github.com/gists");
     const data = {
       public: true,
       files: {
         "ecology_code.js": {
-          "content": content.innerText
+          "content": this.props.source
         }
       }
     };
@@ -38,13 +36,12 @@ export default class ExportGist extends React.Component {
     return (
       <button
         className="gist-export-button"
-        onClick={() => this.postGist()}>
+        onClick={() => this.postGist()}
+      >
         Export to Gist
       </button>
     );
   }
 }
 
-ExportGist.propTypes = {
-  containerElement: React.PropTypes.object
-};
+ExportGist.propTypes = { source: React.PropTypes.string.isRequired };
