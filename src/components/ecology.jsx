@@ -3,10 +3,14 @@ import API from "./api";
 import Overview from "./overview";
 
 export default class Ecology extends React.Component {
-  renderAPI() {
+  renderAPI(source) {
+    if (!source) {
+      return null;
+    }
+
     return (
       <div className="Documentation">
-        <API source={this.props.source}/>
+        <API source={source}/>
       </div>
     );
   }
@@ -23,7 +27,7 @@ export default class Ecology extends React.Component {
             scope={this.props.scope}
           />
         </div>
-        {this.props.source ? this.renderAPI() : null}
+        {this.renderAPI(this.props.source)}
       </div>
     );
   }
