@@ -16,7 +16,7 @@ export default class CopyToClipboard extends React.Component {
     return (
       <button
         ref="copyToClipboard"
-        className="copy-to-clipboard-button"
+        className="Button-Clipboard"
         data-clipboard-text={this.props.source}
       >
         Copy to Clipboard

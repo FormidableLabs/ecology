@@ -31,7 +31,7 @@ export default class PlaygroundContainer extends React.Component {
   }
 
   render() {
-    const {scope, source, noRender, playgroundtheme, exportGist, copyToClipboard} = this.props;
+    const { scope, source, noRender, playgroundtheme } = this.props;
     return (
       <div className="Interactive">
         {this.renderToolbar()}
