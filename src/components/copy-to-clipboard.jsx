@@ -4,10 +4,6 @@ import ReactDOM from "react-dom";
 import Clipboard from "clipboard";
 
 export default class CopyToClipboard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.clipboard = new Clipboard(ReactDOM.findDOMNode(this.refs.copyToClipboard));
   }
