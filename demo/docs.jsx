@@ -13,6 +13,7 @@ class Docs extends React.Component {
       <div className="demo">
         <Ecology
           exportGist={true}
+          copyToClipboard={true}
           overview={require("!!raw!./ecology.md")}
           source={docgen.parse(require("!!raw!./sample"))}
           scope={{React, ReactDOM, SampleClass}}
