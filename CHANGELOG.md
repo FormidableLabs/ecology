@@ -1,5 +1,10 @@
 # Ecology Changelog
 
+## 1.6.0 (2016-07-19)
+
+  * Add support for exporting Gists
+  * Add support for copying source to clipboard
+
 ## 1.5.2 (2016-07-14)
 
   * Fix extra padding in codeblocks
