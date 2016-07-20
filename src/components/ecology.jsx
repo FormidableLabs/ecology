@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import API from "./api";
 import Overview from "./overview";
 
@@ -14,20 +14,31 @@ export default class Ecology extends React.Component {
       </div>
     );
   }
+
   render() {
+    const {
+      copyToClipboard,
+      customRenderers,
+      exportGist,
+      overview,
+      playgroundtheme,
+      scope,
+      source
+    } = this.props;
+
     return (
       <div className="Ecology">
         <div className="Overview">
           <Overview
-            copyToClipboard={this.props.copyToClipboard}
-            customRenderers={this.props.customRenderers}
-            exportGist={this.props.exportGist}
-            markdown={this.props.overview}
-            playgroundtheme={this.props.playgroundtheme}
-            scope={this.props.scope}
+            copyToClipboard={copyToClipboard}
+            customRenderers={customRenderers}
+            exportGist={exportGist}
+            markdown={overview}
+            playgroundtheme={playgroundtheme}
+            scope={scope}
           />
         </div>
-        {this.renderAPI(this.props.source)}
+        {this.renderAPI(source)}
       </div>
     );
   }
@@ -40,11 +51,11 @@ Ecology.defaultProps = {
 };
 
 Ecology.propTypes = {
-  copyToClipboard: React.PropTypes.bool,
-  customRenderers: React.PropTypes.object,
-  exportGist: React.PropTypes.bool,
-  overview: React.PropTypes.string.isRequired,
-  playgroundtheme: React.PropTypes.string,
-  scope: React.PropTypes.object,
-  source: React.PropTypes.object
+  copyToClipboard: PropTypes.bool,
+  customRenderers: PropTypes.object,
+  exportGist: PropTypes.bool,
+  overview: PropTypes.string.isRequired,
+  playgroundtheme: PropTypes.string,
+  scope: PropTypes.object,
+  source: PropTypes.object
 };

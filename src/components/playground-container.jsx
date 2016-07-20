@@ -16,22 +16,25 @@ export default class PlaygroundContainer extends React.Component {
 
   renderToolbar() {
     const { source, exportGist, copyToClipboard } = this.props;
-    return (
-      <div className="Toolbar">
-        {exportGist ? <ExportGist source={source} setMessage={this.setMessage} /> : null}
-        {copyToClipboard ? <CopyToClipboard source={source} /> : null}
-        {this.state.message.length > 0 ?
-          <span className="Toolbar-Message">{this.state.message}</span>
-          : null}
-      </div>
-    );
+    if (exportGist || copyToClipboard) {
+      return (
+        <div className="Toolbar">
+          {exportGist ? <ExportGist source={source} setMessage={this.setMessage} /> : null}
+          {copyToClipboard ? <CopyToClipboard source={source} /> : null}
+          {this.state.message.length > 0 ?
+            <span className="Toolbar-Message">{this.state.message}</span>
+            : null}
+        </div>
+      );
+    }
+    return null;
   }
 
   render() {
     const {scope, source, noRender, playgroundtheme, exportGist, copyToClipboard} = this.props;
     return (
       <div className="Interactive">
-        {exportGist || copyToClipboard ? this.renderToolbar() : null}
+        {this.renderToolbar()}
         <Playground
           codeText={source}
           scope={scope}
