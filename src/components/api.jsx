@@ -7,10 +7,16 @@ const makeArray = (obj) =>
 const renderType = ({name, value}) => {
   switch (name) {
   case "union": {
-    return value.map((val) => val.name).join(", ");
+    if (Array.isArray(value)) {
+      return value.map((val) => val.name).join(", ");
+    }
+    return value;
   }
   case "enum": {
-    return value.map((val) => val.value).join(", ");
+    if (Array.isArray(value)) {
+      return value.map((val) => val.value).join(", ");
+    }
+    return value;
   }
   case "instanceOf": {
     return value;
