@@ -1,5 +1,9 @@
 # Ecology Changelog
 
+## 1.6.1 (2016-08-23)
+
+ * Remove extraneous `fs` dependency
+
 ## 1.6.0 (2016-07-19)
 
   * Add support for exporting Gists
