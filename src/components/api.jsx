@@ -27,6 +27,21 @@ const renderType = ({name, value}) => {
   }
 };
 
+const renderFlowType = ({name, raw, type}) => {
+  // Signature type (object or function)
+  // See https://github.com/reactjs/react-docgen/blob/
+  //        dca8ec9d57b4833f7ddb3164bedf4d74578eee1e/src/utils/getFlowType.js
+  if (name === "signature") {
+    return `${type} : ${raw}`;
+  }
+  // Composite type :
+  if (raw) {
+    return raw;
+  }
+  // Primitive type :
+  return name;
+};
+
 export default class API extends React.Component {
   render() {
     const docObj = this.props.source;
@@ -51,7 +66,11 @@ export default class API extends React.Component {
                     {prop.name}
                   </span>
                   <span className="Prop-type">
-                    {renderType({...prop.type})}
+                    {
+                      prop.flowType
+                        ? renderFlowType({...prop.flowType})
+                        : renderType({...prop.type})
+                    }
                   </span>
                   {prop.required && <span className="Prop-required">required</span>}
                 </td>
