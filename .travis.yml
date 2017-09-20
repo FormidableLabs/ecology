@@ -5,6 +5,9 @@ node_js:
   - 0.12
   - 4.2
 
+addons:
+  firefox: "latest"
+
 # Use container-based Travis infrastructure.
 sudo: false
 
