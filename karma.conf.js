@@ -15,6 +15,7 @@ module.exports = function (config) {
 
   // Overrides.
   config.set({
+    browserNoActivityTimeout: 30000,
     preprocessors: {
       "test/client/main.js": ["webpack"]
     },
