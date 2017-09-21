@@ -34,12 +34,6 @@ module.exports = {
         query: {
           presets: ["react", "es2015", "stage-0"]
         }
-      }, {
-        test: /\.(png|jpg)$/,
-        loader: "url-loader?limit=8192"
-      }, {
-        test: /\.json$/,
-        loader: "json-loader"
       }
     ]
   },
