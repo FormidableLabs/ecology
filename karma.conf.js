@@ -15,8 +15,6 @@ module.exports = function (config) {
 
   // Overrides.
   config.set({
-    browserDisconnectTolerance: 5,
-    retryLimit: 3,
     preprocessors: {
       "test/client/main.js": ["webpack"]
     },
