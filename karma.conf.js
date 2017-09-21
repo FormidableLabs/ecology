@@ -15,7 +15,6 @@ module.exports = function (config) {
 
   // Overrides.
   config.set({
-    browserNoActivityTimeout: 50000,
     browserDisconnectTolerance: 5,
     retryLimit: 3,
     preprocessors: {
