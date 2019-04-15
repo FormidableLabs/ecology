@@ -1,5 +1,7 @@
 [![Travis Status][trav_img]][trav_site]
 ![](https://badge-size.herokuapp.com/FormidableLabs/ecology/master/dist/ecology.min.js?compression=gzip)
+[![Maintenance Status][maintenance-image]](#maintenance-status)
+
 
 Ecology
 ===========================
@@ -231,5 +233,10 @@ Please see [DEVELOPMENT](DEVELOPMENT.md)
 
 Please see [CONTRIBUTING](CONTRIBUTING.md)
 
+## Maintenance Status
+
+ **Archived:** This project is no longer maintained by Formidable. We are no longer responding to issues or pull requests unless they relate to security concerns. We encourage interested developers to fork this project and make it their own!
+
+[maintenance-image]: https://img.shields.io/badge/maintenance-archived-red.svg
 [trav_img]: https://api.travis-ci.org/FormidableLabs/ecology.svg
 [trav_site]: https://travis-ci.org/FormidableLabs/ecology
