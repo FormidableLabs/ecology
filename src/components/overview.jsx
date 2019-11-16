@@ -8,6 +8,9 @@ class Overview extends React.Component {
   componentDidMount() {
     this.renderPlaygrounds();
   }
+  componentDidUpdate() {
+    this.renderPlaygrounds();
+  }
   findPlayground(className) {
     return ReactDOM.findDOMNode(this.refs.overview).getElementsByClassName(className);
   }
