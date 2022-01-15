@@ -62,7 +62,7 @@
     "clipboard": "^1.5.12",
     "component-playground": "^2.1.0",
     "lodash": "^4.13.1",
-    "marked": "^0.3.5",
+    "marked": "^4.0.10",
     "radium": "^0.17.1",
     "react": "^15.1.0 || ^0.14.7",
     "react-addons-test-utils": "^15.1.0 || ^0.14.7",
